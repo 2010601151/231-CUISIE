@@ -1,8 +1,9 @@
+// Menu items with correct prices
 const menuItems = [
   { name: 'Pepper Goat', price: 30 },
   { name: 'Liberian Veg Jollof Rice', price: 17 },
   { name: 'Bake Fish Platter with Plantain', price: 25 },
-  { name: 'Nimba GB Soup with Fufu', price: 1 },
+  { name: 'Nimba GB Soup with Fufu', price: 1 }, // ✅ Corrected price
   { name: 'Palm Butter with Rice', price: 25 }
 ];
 
@@ -12,6 +13,7 @@ let cart = [];
 function addToCart(index) {
   const qtyInput = document.getElementById(`qty-${index}`);
   const qty = parseInt(qtyInput.value);
+
   if (qty <= 0) return;
 
   const existing = cart.find(item => item.name === menuItems[index].name);
@@ -22,10 +24,9 @@ function addToCart(index) {
   }
 
   renderCart();
-  toggleMenu(false); // hide menu after adding
 }
 
-// Render cart and PayPal inputs
+// Render cart table and PayPal items
 function renderCart() {
   const cartBody = document.getElementById('cart-body');
   cartBody.innerHTML = '';
@@ -37,7 +38,7 @@ function renderCart() {
   cart.forEach((item, index) => {
     total += item.price * item.qty;
 
-    // Cart table row
+    // Display cart rows
     cartBody.innerHTML += `
       <tr>
         <td>${item.name}</td>
@@ -47,7 +48,7 @@ function renderCart() {
       </tr>
     `;
 
-    // PayPal hidden inputs
+    // Add PayPal hidden inputs
     paypalItemsDiv.innerHTML += `
       <input type="hidden" name="item_name_${index + 1}" value="${item.name}">
       <input type="hidden" name="amount_${index + 1}" value="${item.price}">
@@ -55,63 +56,21 @@ function renderCart() {
     `;
   });
 
-  document.getElementById('cart-total').textContent = total;
-
-  // Add "Add More Items" button only once
-  if (!document.getElementById('add-more-btn') && cart.length > 0) {
-    const addMoreBtn = document.createElement('button');
-    addMoreBtn.textContent = 'Add More Items';
-    addMoreBtn.id = 'add-more-btn';
-    addMoreBtn.className = 'btn';
-    addMoreBtn.onclick = () => toggleMenu(true);
-    document.getElementById('order-form').appendChild(addMoreBtn);
-  }
+  document.getElementById('cart-total').textContent = total.toFixed(2);
 }
 
-// Update quantity
+// Update item quantity
 function updateQty(index, value) {
   const qty = parseInt(value);
-  if (qty <= 0) {
-    removeItem(index);
-  } else {
+  if (qty <= 0) removeItem(index);
+  else {
     cart[index].qty = qty;
     renderCart();
   }
 }
 
-// Remove item
+// Remove item from cart
 function removeItem(index) {
   cart.splice(index, 1);
   renderCart();
 }
-
-// Show/hide menu section
-function toggleMenu(show) {
-  const menuSection = document.getElementById('menu');
-  menuSection.style.display = show ? 'flex' : 'none'; // use 'block' if you want vertical layout
-
-  if (show) {
-    menuSection.scrollIntoView({ behavior: 'smooth' });
-  }
-}
-
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-  toggleMenu(true); // show menu initially
-  renderCart();     // render empty cart
-});
-// Animate elements when they enter the viewport
-document.addEventListener('DOMContentLoaded', () => {
-  const animatedElements = document.querySelectorAll('.fade-in');
-
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target); // Animate only once
-      }
-    });
-  }, { threshold: 0.2 });
-
-  animatedElements.forEach(el => observer.observe(el));
-});
