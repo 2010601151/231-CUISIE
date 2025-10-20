@@ -1,35 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Menu – Taste Liberia</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu – Taste Liberia</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>
-  <div class="header-container">
-    <img src="logo.jpeg" alt="Taste Liberia Logo" class="logo">
-    <h1>🇱🇷 Taste Liberia</h1>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <img src="logo.jpeg" alt="Taste Liberia Logo" class="logo">
+      <h1>🇱🇷 Taste Liberia</h1>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="#orderModal">Order</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Your Homeland on a Plate</h2>
+    <p>Discover authentic Liberian flavors made with love.</p>
+    <a href="#orderModal" class="btn">Order Now</a>
+  </section>
+
+  <!-- Menu Items -->
+  <main>
+    <section class="menu-section" id="menu"></section>
+
+    <!-- Cart Summary -->
+    <section class="cart-section">
+      <h2>Your Cart</h2>
+      <div id="cart-summary">No items yet.</div>
+      <button id="pay-button" class="btn">Place Order</button>
+    </section>
+  </main>
+
+  <!-- Order Modal -->
+  <div id="orderModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Order Summary</h3>
+      <div id="modal-summary"></div>
+      <p><b>Payment Options:</b></p>
+      <p>💵 Cash App: $nharper2929</p>
+      <p>🏦 Zelle: 3022571662</p>
+      <button id="copy-payment" class="btn">Copy Payment Info</button>
+    </div>
   </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="menu.html">Menu</a>
-    <a href="checkout.html">Order</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
 
-<section class="menu-section" id="menu"></section>
+  <footer>
+    <p>📍 Wilmington, Delaware | 📞 +1 (302) 257-1662 | ✉️ Nellie@231cuisine.com</p>
+    <p>Follow us on <a href="https://instagram.com/231cuisine" target="_blank">Instagram</a></p>
+    <p>&copy; 2025 231 Cuisine & Catering Services</p>
+  </footer>
 
-<footer>
-  <p>📍 Wilmington, Delaware | 📞 +1 (302) 257-1662 | ✉️ Nellie@231cuisine.com</p>
-  <p>Follow us on <a href="https://instagram.com/231cuisine" target="_blank">Instagram</a></p>
-  <p>&copy; 2025 231 Cuisine & Catering Services</p>
-</footer>
-
-<script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
