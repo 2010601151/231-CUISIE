@@ -3,16 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Menu – Taste Liberia</title>
+  <title>🇱🇷 Taste Liberia – Menu</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Header with Logo and Cart -->
   <header>
     <div class="header-container">
       <img src="logo.jpeg" alt="Taste Liberia Logo" class="logo">
       <h1>🇱🇷 Taste Liberia</h1>
+      <div class="cart-icon" id="cart-icon">
+        🛒 <span id="cart-count">0</span>
+      </div>
     </div>
     <nav>
       <a href="index.html">Home</a>
@@ -26,35 +29,54 @@
   <!-- Hero Section -->
   <section class="hero">
     <h2>Your Homeland on a Plate</h2>
-    <p>Discover authentic Liberian flavors made with love.</p>
+    <p>Welcome to 231 Cuisine & Catering Services, where every dish tells a story of home, heritage, and heart.</p>
     <a href="#orderModal" class="btn">Order Now</a>
+    <a href="menu.html" class="btn">View Menu</a>
   </section>
 
   <!-- Menu Items -->
-  <main>
-    <section class="menu-section" id="menu"></section>
-
-    <!-- Cart Section -->
-    <section class="cart-section">
-      <h2>Your Cart</h2>
-      <div id="cart-summary">No items yet.</div>
-      <button id="pay-button" class="btn">Place Order</button>
-    </section>
-  </main>
+  <section class="menu-section" id="menu">
+    <!-- Example Menu Item -->
+    <div class="menu-item">
+      <img src="pepper-goat.jpg" alt="Pepper Goat" class="menu-img">
+      <div class="menu-info">
+        <h3>Pepper Goat – $30</h3>
+        <p>Tender goat meat simmered in a spicy, flavorful sauce.</p>
+      </div>
+      <input type="number" id="qty-0" value="1" min="1" style="width:50px;">
+      <button class="btn" onclick="addToCart(0)">Add to Cart</button>
+    </div>
+    <!-- Add other items similarly -->
+  </section>
 
   <!-- Order Modal -->
   <div id="orderModal" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <h3>Order Summary</h3>
-      <div id="modal-summary"></div>
-      <p><b>Payment Options:</b></p>
-      <p>💵 Cash App: $nharper2929</p>
-      <p>🏦 Zelle: 3022571662</p>
-      <div id="paypal-button"></div>
+      <span class="close" id="closeModal">&times;</span>
+      <h3>Your Order</h3>
+      <ul id="cart-summary"></ul>
+      <h4>Total: $<span id="cart-total">0</span></h4>
+
+      <!-- PayPal -->
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL@example.com">
+        <input type="hidden" name="item_name" value="Taste Liberia Order">
+        <input type="hidden" name="amount" id="paypal-amount" value="0">
+        <input type="hidden" name="currency_code" value="USD">
+        <button type="submit" class="btn">Pay with PayPal</button>
+      </form>
+
+      <!-- Cash App & Zelle -->
+      <h3>Other Options</h3>
+      <ul>
+        <li>💵 Cash App: <b>$nharper2929</b> (Send your order screenshot)</li>
+        <li>🏦 Zelle: <b>3022571662</b> (Send your order screenshot)</li>
+      </ul>
     </div>
   </div>
 
+  <!-- Footer -->
   <footer>
     <p>📍 Wilmington, Delaware | 📞 +1 (302) 257-1662 | ✉️ Nellie@231cuisine.com</p>
     <p>Follow us on <a href="https://instagram.com/231cuisine" target="_blank">Instagram</a></p>
@@ -62,5 +84,54 @@
   </footer>
 
   <script src="app.js"></script>
+  <script>
+    // Example Menu Items
+    const menuItems = [
+      { name: 'Pepper Goat', price: 30 },
+      { name: 'Liberian Veg Jollof Rice', price: 17 },
+      { name: 'Bake Fish Platter with Plantain', price: 25 },
+      { name: 'Nimba GB Soup with Fufu', price: 30 },
+      { name: 'Palm Butter with Rice', price: 25 }
+    ];
+
+    let cart = [];
+
+    function addToCart(index){
+      const qty = parseInt(document.getElementById(`qty-${index}`).value);
+      const existingIndex = cart.findIndex(item => item.name === menuItems[index].name);
+      if(existingIndex > -1){
+        cart[existingIndex].qty += qty;
+      } else {
+        cart.push({...menuItems[index], qty});
+      }
+      renderCart();
+      updateCartCount();
+    }
+
+    function renderCart(){
+      const summary = document.getElementById('cart-summary');
+      summary.innerHTML = '';
+      let total = 0;
+      cart.forEach(item=>{
+        summary.innerHTML += `<li>${item.name} x ${item.qty} - $${item.price*item.qty}</li>`;
+        total += item.price*item.qty;
+      });
+      document.getElementById('cart-total').textContent = total;
+      document.getElementById('paypal-amount').value = total;
+    }
+
+    function updateCartCount(){
+      document.getElementById('cart-count').textContent = cart.reduce((sum,item)=>sum+item.qty,0);
+    }
+
+    // Modal open/close
+    const modal = document.getElementById('orderModal');
+    const cartIcon = document.getElementById('cart-icon');
+    const closeModal = document.getElementById('closeModal');
+
+    cartIcon.onclick = ()=>{ modal.style.display = 'block'; }
+    closeModal.onclick = ()=>{ modal.style.display = 'none'; }
+    window.onclick = (e)=>{ if(e.target==modal) modal.style.display='none'; }
+  </script>
 </body>
 </html>
