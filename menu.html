@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <!-- Header with Logo -->
+  <!-- Header -->
   <header>
     <div class="header-container">
       <img src="logo.jpeg" alt="Taste Liberia Logo" class="logo">
@@ -23,7 +23,7 @@
     </nav>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero">
     <h2>Your Homeland on a Plate</h2>
     <p>Welcome to 231 Cuisine & Catering Services, where every dish tells a story of home, heritage, and heart.</p>
@@ -34,7 +34,7 @@
   <!-- Menu Section -->
   <section class="menu-section" id="menu">
     <div class="menu-item">
-      <img src="pepper-goat.jpg" class="menu-img" alt="Pepper Goat">
+      <img src="pepper-goat.jpeg" class="menu-img" alt="Pepper Goat">
       <div class="menu-info">
         <h3>Pepper Goat – $30</h3>
         <p>Tender goat meat simmered in a spicy, flavorful sauce.</p>
@@ -44,7 +44,7 @@
     </div>
 
     <div class="menu-item">
-      <img src="veg-jollof.jpg" class="menu-img" alt="Liberian Veg Jollof Rice">
+      <img src="jollof.jpeg" class="menu-img" alt="Liberian Veg Jollof Rice">
       <div class="menu-info">
         <h3>Liberian Veg Jollof Rice – $17</h3>
         <p>A vibrant rice dish cooked with vegetables and signature spices.</p>
@@ -54,7 +54,7 @@
     </div>
 
     <div class="menu-item">
-      <img src="bake-fish.jpg" class="menu-img" alt="Bake Fish Platter with Plantain">
+      <img src="Bake Fish.jpeg" class="menu-img" alt="Bake Fish Platter with Plantain">
       <div class="menu-info">
         <h3>Bake Fish Platter with Plantain – $25</h3>
         <p>Perfectly seasoned fish paired with golden fried plantains.</p>
@@ -64,9 +64,9 @@
     </div>
 
     <div class="menu-item">
-      <img src="gb-soup.jpg" class="menu-img" alt="Nimba GB Soup with Fufu">
+      <img src="GB.jpeg" class="menu-img" alt="Nimba GB Soup with Fufu">
       <div class="menu-info">
-        <h3>Nimba GB Soup with Fufu – $30</h3>
+        <h3>Nimba GB Soup with Fufu – $1</h3>
         <p>A rich traditional soup that warms the soul, served with soft fufu.</p>
       </div>
       <input type="number" id="qty-3" value="1" min="1" style="width:50px;">
@@ -74,7 +74,7 @@
     </div>
 
     <div class="menu-item">
-      <img src="palm-butter.jpg" class="menu-img" alt="Palm Butter with Rice">
+      <img src="palm.jpeg" class="menu-img" alt="Palm Butter with Rice">
       <div class="menu-info">
         <h3>Palm Butter with Rice – $25</h3>
         <p>A creamy, spicy palm butter sauce paired with fluffy rice.</p>
@@ -84,7 +84,7 @@
     </div>
   </section>
 
-  <!-- Order Form Section -->
+  <!-- Cart / Order Section -->
   <section class="order-form" id="order-form">
     <h2>Your Cart</h2>
     <table style="width:100%; text-align:left;">
@@ -100,15 +100,14 @@
     </table>
     <h4>Total: $<span id="cart-total">0</span></h4>
 
-   <!-- PayPal Checkout -->
-<form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-  <input type="hidden" name="cmd" value="_cart">
-  <input type="hidden" name="upload" value="1">
-  <input type="hidden" name="business" value="your-paypal-email@example.com">
-  <div id="paypal-items"></div>
-  <input type="submit" value="Pay with PayPal" class="btn">
-</form>
-
+    <!-- PayPal Form -->
+    <form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+      <input type="hidden" name="cmd" value="_cart">
+      <input type="hidden" name="upload" value="1">
+      <input type="hidden" name="business" value="nellie@231cuisine.com">
+      <div id="paypal-items"></div>
+      <input type="submit" value="Pay with PayPal" class="btn">
+    </form>
 
     <h3>Other Payment Options</h3>
     <ul>
