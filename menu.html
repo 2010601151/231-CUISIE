@@ -3,24 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🇱🇷 Taste Liberia – Menu</title>
+  <title>Menu – Taste Liberia</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Header with Logo and Cart -->
+  <!-- Header with Logo -->
   <header>
     <div class="header-container">
       <img src="logo.jpeg" alt="Taste Liberia Logo" class="logo">
       <h1>🇱🇷 Taste Liberia</h1>
-      <div class="cart-icon" id="cart-icon">
-        🛒 <span id="cart-count">0</span>
-      </div>
     </div>
     <nav>
       <a href="index.html">Home</a>
       <a href="menu.html">Menu</a>
-      <a href="#orderModal">Order</a>
+      <a href="#order-form">Order</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -30,15 +27,14 @@
   <section class="hero">
     <h2>Your Homeland on a Plate</h2>
     <p>Welcome to 231 Cuisine & Catering Services, where every dish tells a story of home, heritage, and heart.</p>
-    <a href="#orderModal" class="btn">Order Now</a>
+    <a href="#order-form" class="btn">Order Now</a>
     <a href="menu.html" class="btn">View Menu</a>
   </section>
 
-  <!-- Menu Items -->
+  <!-- Menu Section -->
   <section class="menu-section" id="menu">
-    <!-- Example Menu Item -->
     <div class="menu-item">
-      <img src="pepper-goat.jpg" alt="Pepper Goat" class="menu-img">
+      <img src="pepper-goat.jpg" class="menu-img" alt="Pepper Goat">
       <div class="menu-info">
         <h3>Pepper Goat – $30</h3>
         <p>Tender goat meat simmered in a spicy, flavorful sauce.</p>
@@ -46,47 +42,80 @@
       <input type="number" id="qty-0" value="1" min="1" style="width:50px;">
       <button class="btn" onclick="addToCart(0)">Add to Cart</button>
     </div>
-    <!-- Add other items similarly -->
+
+    <div class="menu-item">
+      <img src="veg-jollof.jpg" class="menu-img" alt="Liberian Veg Jollof Rice">
+      <div class="menu-info">
+        <h3>Liberian Veg Jollof Rice – $17</h3>
+        <p>A vibrant rice dish cooked with vegetables and signature spices.</p>
+      </div>
+      <input type="number" id="qty-1" value="1" min="1" style="width:50px;">
+      <button class="btn" onclick="addToCart(1)">Add to Cart</button>
+    </div>
+
+    <div class="menu-item">
+      <img src="bake-fish.jpg" class="menu-img" alt="Bake Fish Platter with Plantain">
+      <div class="menu-info">
+        <h3>Bake Fish Platter with Plantain – $25</h3>
+        <p>Perfectly seasoned fish paired with golden fried plantains.</p>
+      </div>
+      <input type="number" id="qty-2" value="1" min="1" style="width:50px;">
+      <button class="btn" onclick="addToCart(2)">Add to Cart</button>
+    </div>
+
+    <div class="menu-item">
+      <img src="gb-soup.jpg" class="menu-img" alt="Nimba GB Soup with Fufu">
+      <div class="menu-info">
+        <h3>Nimba GB Soup with Fufu – $30</h3>
+        <p>A rich traditional soup that warms the soul, served with soft fufu.</p>
+      </div>
+      <input type="number" id="qty-3" value="1" min="1" style="width:50px;">
+      <button class="btn" onclick="addToCart(3)">Add to Cart</button>
+    </div>
+
+    <div class="menu-item">
+      <img src="palm-butter.jpg" class="menu-img" alt="Palm Butter with Rice">
+      <div class="menu-info">
+        <h3>Palm Butter with Rice – $25</h3>
+        <p>A creamy, spicy palm butter sauce paired with fluffy rice.</p>
+      </div>
+      <input type="number" id="qty-4" value="1" min="1" style="width:50px;">
+      <button class="btn" onclick="addToCart(4)">Add to Cart</button>
+    </div>
   </section>
 
-  <!-- Order Modal -->
-  <div id="orderModal" class="modal">
-    <div class="modal-content">
-      <span class="close" id="closeModal">&times;</span>
-      <h3>Your Order</h3>
-      <ul id="cart-summary"></ul>
-      <h4>Total: $<span id="cart-total">0</span></h4>
+  <!-- Order Form Section -->
+  <section class="order-form" id="order-form">
+    <h2>Your Cart</h2>
+    <table style="width:100%; text-align:left;">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody id="cart-body"></tbody>
+    </table>
+    <h4>Total: $<span id="cart-total">0</span></h4>
 
-      <!-- PayPal -->
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-        <input type="hidden" name="cmd" value="_xclick">
-        <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL@example.com">
-        <input type="hidden" name="item_name" value="Taste Liberia Order">
-        <input type="hidden" name="amount" id="paypal-amount" value="0">
-        <input type="hidden" name="currency_code" value="USD">
-        <button type="submit" class="btn">Pay with PayPal</button>
-      </form>
-<table id="cart-summary" style="width:100%; text-align:left; margin-bottom:10px;">
-  <thead>
-    <tr>
-      <th>Item</th>
-      <th>Qty</th>
-      <th>Price</th>
-      <th>Remove</th>
-    </tr>
-  </thead>
-  <tbody id="cart-body"></tbody>
-</table>
-<h4>Total: $<span id="cart-total">0</span></h4>
+    <!-- PayPal Checkout -->
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="business" value="your-paypal-email@example.com">
+      <input type="hidden" name="item_name" value="Taste Liberia Order">
+      <input type="hidden" name="amount" id="paypal-amount" value="0">
+      <input type="hidden" name="currency_code" value="USD">
+      <input type="submit" value="Pay with PayPal" class="btn">
+    </form>
 
-      <!-- Cash App & Zelle -->
-      <h3>Other Options</h3>
-      <ul>
-        <li>💵 Cash App: <b>$nharper2929</b> (Send your order screenshot)</li>
-        <li>🏦 Zelle: <b>3022571662</b> (Send your order screenshot)</li>
-      </ul>
-    </div>
-  </div>
+    <h3>Other Payment Options</h3>
+    <ul>
+      <li>💵 Cash App: <b>$nharper2929</b></li>
+      <li>🏦 Zelle: <b>3022571662</b></li>
+    </ul>
+  </section>
 
   <!-- Footer -->
   <footer>
@@ -96,54 +125,5 @@
   </footer>
 
   <script src="app.js"></script>
-  <script>
-    // Example Menu Items
-    const menuItems = [
-      { name: 'Pepper Goat', price: 30 },
-      { name: 'Liberian Veg Jollof Rice', price: 17 },
-      { name: 'Bake Fish Platter with Plantain', price: 25 },
-      { name: 'Nimba GB Soup with Fufu', price: 30 },
-      { name: 'Palm Butter with Rice', price: 25 }
-    ];
-
-    let cart = [];
-
-    function addToCart(index){
-      const qty = parseInt(document.getElementById(`qty-${index}`).value);
-      const existingIndex = cart.findIndex(item => item.name === menuItems[index].name);
-      if(existingIndex > -1){
-        cart[existingIndex].qty += qty;
-      } else {
-        cart.push({...menuItems[index], qty});
-      }
-      renderCart();
-      updateCartCount();
-    }
-
-    function renderCart(){
-      const summary = document.getElementById('cart-summary');
-      summary.innerHTML = '';
-      let total = 0;
-      cart.forEach(item=>{
-        summary.innerHTML += `<li>${item.name} x ${item.qty} - $${item.price*item.qty}</li>`;
-        total += item.price*item.qty;
-      });
-      document.getElementById('cart-total').textContent = total;
-      document.getElementById('paypal-amount').value = total;
-    }
-
-    function updateCartCount(){
-      document.getElementById('cart-count').textContent = cart.reduce((sum,item)=>sum+item.qty,0);
-    }
-
-    // Modal open/close
-    const modal = document.getElementById('orderModal');
-    const cartIcon = document.getElementById('cart-icon');
-    const closeModal = document.getElementById('closeModal');
-
-    cartIcon.onclick = ()=>{ modal.style.display = 'block'; }
-    closeModal.onclick = ()=>{ modal.style.display = 'none'; }
-    window.onclick = (e)=>{ if(e.target==modal) modal.style.display='none'; }
-  </script>
 </body>
 </html>
