@@ -11,13 +11,42 @@ body {
 header {
   background: #2E6F40; /* green theme */
   color: #fff;
-  padding: 15px;
+  padding: 15px 10px;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center logo + text */
+  gap: 15px;
+  flex-wrap: wrap; /* responsive wrap */
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+nav {
+  margin-top: 10px;
 }
 
 nav a {
   color: #fff;
   margin: 0 10px;
   text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
 }
 
 /* Hero Section */
@@ -27,14 +56,51 @@ nav a {
   padding: 100px 20px;
 }
 
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
 /* Buttons */
 .btn {
   background: #2E6F40;
   color: #fff;
-  padding: 10px 20px;
+  padding: 12px 25px;
   border: none;
   border-radius: 5px;
   text-decoration: none;
+  margin: 5px;
+  display: inline-block;
+}
+
+.btn:hover {
+  background: #246036;
+}
+
+/* Favorites Section */
+.favorites {
+  padding: 40px 20px;
+}
+
+.favorites h2 {
+  color: #2E6F40;
+  margin-bottom: 20px;
+}
+
+.favorites ul {
+  list-style: none;
+  padding: 0;
+}
+
+.favorites li {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
 }
 
 /* Menu Items with Images */
@@ -63,33 +129,68 @@ nav a {
   margin: 5px 0;
 }
 
-/* Footer */
-footer {
-  background: #f2f2f2;
-  padding: 10px;
+/* Order Form Section */
+.order-form {
+  padding: 50px 20px;
+  background: #f8f8f8;
+}
+
+.order-form h2 {
+  color: #2E6F40;
+  margin-bottom: 10px;
+}
+
+.order-form p {
+  margin-bottom: 20px;
+}
+
+.order-form ul {
+  list-style: none;
+  padding: 0;
   margin-top: 20px;
 }
 
-/* Lists */
-ul {
-  list-style: none;
-  padding: 0;
+.order-form ul li {
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
-/* Headings */
-h1, h2, h3 {
+/* Footer */
+footer {
+  background: #f2f2f2;
+  padding: 15px 10px;
+  margin-top: 30px;
+}
+
+footer a {
   color: #2E6F40;
-}
-.header-container {
-  display: flex;
-  align-items: center;
-  justify-content: center; /* center logo + text horizontally */
-  gap: 15px; /* space between logo and text */
+  text-decoration: none;
 }
 
-.logo {
-  width: 60px;   /* adjust size */
-  height: 60px;
-  object-fit: contain;
-  border-radius: 10px; /* optional rounded corners */
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+  }
+
+  .hero h2 {
+    font-size: 2rem;
+  }
+
+  .btn {
+    padding: 10px 20px;
+  }
+
+  .menu-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu-img {
+    margin-bottom: 10px;
+  }
 }
