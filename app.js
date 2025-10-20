@@ -8,18 +8,36 @@ const menuItems = [
 
 let cart = [];
 
+// Add item to cart
+function addToCart(index) {
+  const qtyInput = document.getElementById(`qty-${index}`);
+  const qty = parseInt(qtyInput.value);
+
+  if (qty <= 0) return;
+
+  const existing = cart.find(item => item.name === menuItems[index].name);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({ ...menuItems[index], qty });
+  }
+
+  renderCart();
+}
+
+// Render cart table and PayPal items
 function renderCart() {
   const cartBody = document.getElementById('cart-body');
   cartBody.innerHTML = '';
   let total = 0;
 
   const paypalItemsDiv = document.getElementById('paypal-items');
-  paypalItemsDiv.innerHTML = ''; // clear previous PayPal fields
+  paypalItemsDiv.innerHTML = '';
 
   cart.forEach((item, index) => {
     total += item.price * item.qty;
 
-    // Render cart table
+    // Table row
     cartBody.innerHTML += `
       <tr>
         <td>${item.name}</td>
@@ -29,7 +47,7 @@ function renderCart() {
       </tr>
     `;
 
-    // Create PayPal hidden fields for each item
+    // PayPal hidden inputs
     paypalItemsDiv.innerHTML += `
       <input type="hidden" name="item_name_${index + 1}" value="${item.name}">
       <input type="hidden" name="amount_${index + 1}" value="${item.price}">
@@ -40,7 +58,7 @@ function renderCart() {
   document.getElementById('cart-total').textContent = total;
 }
 
-
+// Update quantity
 function updateQty(index, value) {
   const qty = parseInt(value);
   if (qty <= 0) removeItem(index);
@@ -50,6 +68,7 @@ function updateQty(index, value) {
   }
 }
 
+// Remove item
 function removeItem(index) {
   cart.splice(index, 1);
   renderCart();
