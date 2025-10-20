@@ -1,58 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Checkout – Taste Liberia</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout – Taste Liberia</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>
-  <div class="header-container">
-    <img src="logo.jpeg" alt="Taste Liberia Logo" class="logo">
-    <h1>🇱🇷 Taste Liberia</h1>
-  </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="menu.html">Menu</a>
-    <a href="checkout.html">Order</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <img src="logo.jpeg" alt="Taste Liberia Logo" class="logo">
+      <h1>🇱🇷 Taste Liberia</h1>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="#order-form">Order</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-<section class="cart-section" id="order-form">
-  <h2>Place Your Order</h2>
-  <div id="cart-summary">No items yet.</div>
+  <!-- Cart Section -->
+  <section class="order-form" id="order-form">
+    <h2>Your Cart</h2>
+    <table style="width:100%; text-align:left;">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody id="cart-body"></tbody>
+    </table>
+    <h4>Total: $<span id="cart-total">0</span></h4>
 
-  <div id="customer-info">
-    <input type="text" id="name" placeholder="Full Name" required /><br>
-    <input type="text" id="phone" placeholder="Phone Number" required /><br>
-    <input type="text" id="address" placeholder="Delivery Address" required /><br>
-  </div>
-  <button id="pay-button" class="btn">Place Order / Pay</button>
-</section>
+    <!-- PayPal Checkout -->
+    <form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+      <input type="hidden" name="cmd" value="_cart">
+      <input type="hidden" name="upload" value="1">
+      <input type="hidden" name="business" value="nellie@231cuisine.com">
+      <div id="paypal-items"></div>
+      <input type="submit" value="Pay with PayPal" class="btn">
+    </form>
 
-<!-- Modal -->
-<div id="orderModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h3>Order Summary</h3>
-    <div id="modal-summary"></div>
-    <p><b>Payment Options:</b></p>
-    <p>💵 Cash App: <span id="cash-app">$nharper2929</span></p>
-    <p>🏦 Zelle: <span id="zelle">3022571662</span></p>
-    <button class="copy-btn" id="copy-payment">Copy Payment Info</button>
-  </div>
-</div>
+    <h3>Other Payment Options</h3>
+    <ul>
+      <li>💵 Cash App: <b>$nharper2929</b></li>
+      <li>🏦 Zelle: <b>3022571662</b></li>
+    </ul>
+    <p>After paying via Cash App or Zelle, send a screenshot or confirmation to <b>nellie@231cuisine.com</b></p>
+  </section>
 
-<footer>
-  <p>📍 Wilmington, Delaware | 📞 +1 (302) 257-1662 | ✉️ Nellie@231cuisine.com</p>
-  <p>Follow us on <a href="https://instagram.com/231cuisine" target="_blank">Instagram</a></p>
-  <p>&copy; 2025 231 Cuisine & Catering Services</p>
-</footer>
+  <!-- Footer -->
+  <footer>
+    <p>📍 Wilmington, Delaware | 📞 +1 (302) 257-1662 | ✉️ Nellie@231cuisine.com</p>
+    <p>Follow us on <a href="https://instagram.com/231cuisine" target="_blank">Instagram</a></p>
+    <p>&copy; 2025 231 Cuisine & Catering Services</p>
+  </footer>
 
-<script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
