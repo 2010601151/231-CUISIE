@@ -100,15 +100,15 @@
     </table>
     <h4>Total: $<span id="cart-total">0</span></h4>
 
-    <!-- PayPal Checkout -->
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="your-paypal-email@example.com">
-      <input type="hidden" name="item_name" value="Taste Liberia Order">
-      <input type="hidden" name="amount" id="paypal-amount" value="0">
-      <input type="hidden" name="currency_code" value="USD">
-      <input type="submit" value="Pay with PayPal" class="btn">
-    </form>
+   <!-- PayPal Checkout -->
+<form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+  <input type="hidden" name="cmd" value="_cart">
+  <input type="hidden" name="upload" value="1">
+  <input type="hidden" name="business" value="your-paypal-email@example.com">
+  <div id="paypal-items"></div>
+  <input type="submit" value="Pay with PayPal" class="btn">
+</form>
+
 
     <h3>Other Payment Options</h3>
     <ul>
