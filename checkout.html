@@ -1,70 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🇱🇷 Taste Liberia – 231 Cuisine & Catering Services</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout – Taste Liberia</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Header with Logo -->
-  <header>
-    <div class="header-container">
-      <img src="logo.jpeg" alt="Taste Liberia Logo" class="logo">
-      <h1>🇱🇷 Taste Liberia</h1>
-    </div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="menu.html">Menu</a>
-      <a href="#order-form">Order</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+<header>
+  <div class="header-container">
+    <img src="logo.jpeg" alt="Taste Liberia Logo" class="logo">
+    <h1>🇱🇷 Taste Liberia</h1>
+  </div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="checkout.html">Order</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h2>Your Homeland on a Plate</h2>
-    <p>Welcome to 231 Cuisine & Catering Services, where every dish tells a story of home, heritage, and heart.</p>
-    <a href="#order-form" class="btn">Order Now</a>
-    <a href="menu.html" class="btn">View Menu</a>
-  </section>
+<section class="cart-section" id="order-form">
+  <h2>Place Your Order</h2>
+  <div id="cart-summary">No items yet.</div>
 
-  <!-- Customer Favorites -->
-  <section class="favorites">
-    <h2>🔥 Customer Favorites</h2>
-    <ul>
-      <li><b>Pepper Goat – $30</b><br>Tender goat meat simmered in a spicy, flavorful sauce.</li>
-      <li><b>Liberian Veg Jollof Rice – $17</b><br>A vibrant rice dish cooked with vegetables and signature spices.</li>
-      <li><b>Bake Fish Platter with Plantain – $25</b><br>Perfectly seasoned fish paired with golden fried plantains.</li>
-      <li><b>Nimba GB Soup with Fufu – $30</b><br>A rich traditional soup that warms the soul, served with soft fufu.</li>
-      <li><b>Palm Butter with Rice – $25</b><br>A creamy, spicy palm butter sauce paired with fluffy rice.</li>
-    </ul>
-  </section>
+  <div id="customer-info">
+    <input type="text" id="name" placeholder="Full Name" required /><br>
+    <input type="text" id="phone" placeholder="Phone Number" required /><br>
+    <input type="text" id="address" placeholder="Delivery Address" required /><br>
+  </div>
+  <button id="pay-button" class="btn">Place Order / Pay</button>
+</section>
 
-  <!-- Order Form Section -->
-  <section class="order-form" id="order-form">
-    <h2>Place Your Order</h2>
-    <p>Please fill out the form below and follow the payment instructions:</p>
+<!-- Modal -->
+<div id="orderModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Order Summary</h3>
+    <div id="modal-summary"></div>
+    <p><b>Payment Options:</b></p>
+    <p>💵 Cash App: <span id="cash-app">$nharper2929</span></p>
+    <p>🏦 Zelle: <span id="zelle">3022571662</span></p>
+    <button class="copy-btn" id="copy-payment">Copy Payment Info</button>
+  </div>
+</div>
 
-    <!-- Jotform Embed (Responsive) -->
-    <div id="jotform-form"></div>
-    <script type="text/javascript" src="https://form.jotform.com/jsform/252923162753054"></script>
+<footer>
+  <p>📍 Wilmington, Delaware | 📞 +1 (302) 257-1662 | ✉️ Nellie@231cuisine.com</p>
+  <p>Follow us on <a href="https://instagram.com/231cuisine" target="_blank">Instagram</a></p>
+  <p>&copy; 2025 231 Cuisine & Catering Services</p>
+</footer>
 
-    <h3>Payment Options</h3>
-    <ul>
-      <li>💵 Cash App: <b>$nharper2929</b></li>
-      <li>🏦 Zelle: <b>3022571662</b></li>
-    </ul>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>📍 Wilmington, Delaware | 📞 +1 (302) 257-1662 | ✉️ Nellie@231cuisine.com</p>
-    <p>Follow us on <a href="https://instagram.com/231cuisine" target="_blank">Instagram</a></p>
-    <p>&copy; 2025 231 Cuisine & Catering Services</p>
-  </footer>
-
+<script src="app.js"></script>
 </body>
 </html>
