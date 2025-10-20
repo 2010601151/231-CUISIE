@@ -59,25 +59,35 @@ function renderCart(){
 const modal = document.getElementById("orderModal");
 const modalSummary = document.getElementById("modal-summary");
 const spanClose = document.getElementsByClassName("close")[0];
-const copyBtn = document.getElementById("copy-payment");
 
 payButton.addEventListener("click", ()=>{
   if(cart.length === 0){ alert("Please add items to your cart first."); return; }
-  let summaryHTML = "<ul>";
+
   let total = 0;
+  let summaryHTML = "<ul>";
   cart.forEach(item => {
     summaryHTML += `<li>${item.name} x${item.qty} - $${item.price*item.qty}</li>`;
     total += item.price*item.qty;
   });
   summaryHTML += `</ul><p><b>Total: $${total}</b></p>`;
   modalSummary.innerHTML = summaryHTML;
+
+  // PayPal form
+  const itemsDescription = cart.map(item => `${item.name} x${item.qty}`).join(", ");
+  const paypalHTML = `
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL">
+      <input type="hidden" name="item_name" value="${itemsDescription}">
+      <input type="hidden" name="amount" value="${total}">
+      <input type="hidden" name="currency_code" value="USD">
+      <input type="submit" class="btn" value="Pay with PayPal">
+    </form>
+  `;
+  document.getElementById("paypal-button").innerHTML = paypalHTML;
+
   modal.style.display = "block";
 });
 
 spanClose.onclick = () => modal.style.display = "none";
 window.onclick = (event) => { if(event.target === modal) modal.style.display = "none"; }
-
-copyBtn.addEventListener("click", ()=>{
-  navigator.clipboard.writeText("Cash App: $nharper2929\nZelle: 3022571662")
-    .then(()=> alert("Payment info copied!"));
-});
