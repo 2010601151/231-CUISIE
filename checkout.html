@@ -7,32 +7,39 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header><h1>Checkout</h1>
-   <nav>
-    <a href="index.html">Home</a>
-    <a href="menu.html">Menu</a>
-    <a href="checkout.html">Order</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+  <header>
+    <div class="header-container">
+      <img src="images/logo.png" alt="Taste Liberia Logo" class="logo">
+      <h1>Checkout – Taste Liberia</h1>
+    </div>
   </header>
+
   <main>
-    <div id="cart-summary"></div>
-    <form id="checkout-form">
-      <input type="text" placeholder="Full Name" required />
-      <input type="text" placeholder="Phone Number" required />
-      <input type="text" placeholder="Delivery Address" required />
-      <textarea placeholder="Additional Notes"></textarea>
+    <section class="order-section">
+      <h2>Place Your Order</h2>
+      <p>Please fill out the form below and follow the payment instructions.</p>
+
+      <!-- Jotform Embed -->
+      <iframe
+        src="https://form.jotform.com/252923162753054"
+        width="100%"
+        height="900"
+        frameborder="0"
+        scrolling="no"
+      ></iframe>
+
       <h3>Payment Options</h3>
       <ul>
         <li>💵 Cash App: <b>$nharper2929</b></li>
         <li>🏦 Zelle: <b>3022571662</b></li>
-        <li>📝 Jotform Order Link: <button disabled>Coming Soon</button></li>
       </ul>
-      <button type="submit" class="btn">Place Order</button>
-    </form>
+    </section>
   </main>
-  <footer><p>&copy; 2025 Taste Liberia – 231 Cuisine & Catering Services</p></footer>
-  <script src="app.js"></script>
+
+  <footer>
+    <p>📍 Wilmington, Delaware | 📞 +1 (302) 257-1662 | ✉️ Nellie@231cuisine.com</p>
+    <p>&copy; 2025 Taste Liberia – 231 Cuisine & Catering Services</p>
+  </footer>
+
 </body>
 </html>
