@@ -80,3 +80,16 @@ ul {
 h1, h2, h3 {
   color: #2E6F40;
 }
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center logo + text horizontally */
+  gap: 15px; /* space between logo and text */
+}
+
+.logo {
+  width: 60px;   /* adjust size */
+  height: 60px;
+  object-fit: contain;
+  border-radius: 10px; /* optional rounded corners */
+}
