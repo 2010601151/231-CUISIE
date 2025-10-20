@@ -1,4 +1,3 @@
-// Menu Data
 const menuItems = [
   { name: "Pepper Goat", price: 30, img: "images/pepper-goat.jpg" },
   { name: "Liberian Veg Jollof Rice", price: 17, img: "images/veg-jollof.jpg" },
@@ -30,15 +29,19 @@ menuItems.forEach((item, index) => {
 
 function addToCart(index){
   const qty = parseInt(document.getElementById(`qty-${index}`).value);
-  const item = {...menuItems[index], qty};
-  cart.push(item);
+  const existingIndex = cart.findIndex(item => item.name === menuItems[index].name);
+  if(existingIndex > -1){
+    cart[existingIndex].qty += qty;
+  } else {
+    cart.push({...menuItems[index], qty});
+  }
   renderCart();
 }
 
 function renderCart(){
   if(cart.length===0){ cartSummary.innerHTML="No items yet."; return; }
   let html = "<ul>";
-  let total=0;
+  let total = 0;
   cart.forEach(item => {
     html += `<li>${item.name} x${item.qty} - $${item.price*item.qty}</li>`;
     total += item.price*item.qty;
@@ -47,28 +50,29 @@ function renderCart(){
   cartSummary.innerHTML = html;
 }
 
-// Modal
+// Modal Logic
 const modal = document.getElementById("orderModal");
 const modalSummary = document.getElementById("modal-summary");
 const spanClose = document.getElementsByClassName("close")[0];
 const copyBtn = document.getElementById("copy-payment");
 
-payButton.addEventListener("click",()=>{
-  const name = document.getElementById("name").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const address = document.getElementById("address").value.trim();
-
-  if(cart.length===0){ alert("Please add items to your cart first."); return; }
-  if(!name || !phone || !address){ alert("Please fill in all your details."); return; }
-
-  let total = cart.reduce((sum,item)=>sum+item.price*item.qty,0);
-  let summaryHTML = `<p><b>Name:</b> ${name}<br><b>Phone:</b> ${phone}<br><b>Address:</b> ${address}</p><ul>`;
-  cart.forEach(item=>{ summaryHTML += `<li>${item.name} x${item.qty} - $${item.price*item.qty}</li>`; });
+payButton.addEventListener("click", ()=>{
+  if(cart.length === 0){ alert("Please add items to your cart first."); return; }
+  let summaryHTML = "<ul>";
+  let total = 0;
+  cart.forEach(item => {
+    summaryHTML += `<li>${item.name} x${item.qty} - $${item.price*item.qty}</li>`;
+    total += item.price*item.qty;
+  });
   summaryHTML += `</ul><p><b>Total: $${total}</b></p>`;
   modalSummary.innerHTML = summaryHTML;
-  modal.style.display="block";
+  modal.style.display = "block";
 });
 
-spanClose.onclick=function(){ modal.style.display="none"; }
-window.onclick=function(event){ if(event.target==modal) modal.style.display="none"; }
-copyBtn.addEventListener("click",()=>{ navigator.clipboard.writeText("Cash App: $nharper2929\nZelle: 3022571662").then(()=>alert("Payment info copied!")); });
+spanClose.onclick = () => modal.style.display = "none";
+window.onclick = (event) => { if(event.target === modal) modal.style.display = "none"; }
+
+copyBtn.addEventListener("click", ()=>{
+  navigator.clipboard.writeText("Cash App: $nharper2929\nZelle: 3022571662")
+    .then(()=> alert("Payment info copied!"));
+});
