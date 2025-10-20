@@ -11,7 +11,7 @@ const cartSummary = document.getElementById("cart-summary");
 const payButton = document.getElementById("pay-button");
 let cart = [];
 
-// Render Menu
+// Render Menu Items
 menuItems.forEach((item, index) => {
   const div = document.createElement("div");
   div.className = "menu-item";
@@ -27,7 +27,8 @@ menuItems.forEach((item, index) => {
   menuSection.appendChild(div);
 });
 
-function addToCart(index){
+// Global function for buttons
+window.addToCart = function(index){
   const qty = parseInt(document.getElementById(`qty-${index}`).value);
   const existingIndex = cart.findIndex(item => item.name === menuItems[index].name);
   if(existingIndex > -1){
@@ -38,8 +39,12 @@ function addToCart(index){
   renderCart();
 }
 
+// Render cart
 function renderCart(){
-  if(cart.length===0){ cartSummary.innerHTML="No items yet."; return; }
+  if(cart.length===0){ 
+    cartSummary.innerHTML="No items yet."; 
+    return; 
+  }
   let html = "<ul>";
   let total = 0;
   cart.forEach(item => {
