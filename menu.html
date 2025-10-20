@@ -66,6 +66,18 @@
         <input type="hidden" name="currency_code" value="USD">
         <button type="submit" class="btn">Pay with PayPal</button>
       </form>
+<table id="cart-summary" style="width:100%; text-align:left; margin-bottom:10px;">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Qty</th>
+      <th>Price</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+  <tbody id="cart-body"></tbody>
+</table>
+<h4>Total: $<span id="cart-total">0</span></h4>
 
       <!-- Cash App & Zelle -->
       <h3>Other Options</h3>
