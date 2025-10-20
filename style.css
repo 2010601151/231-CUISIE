@@ -1,0 +1,82 @@
+/* General Styles */
+body {
+  font-family: Poppins, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #333;
+}
+
+/* Header & Navigation */
+header {
+  background: #2E6F40; /* green theme */
+  color: #fff;
+  padding: 15px;
+}
+
+nav a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+/* Hero Section */
+.hero {
+  background: url('hero.jpg') center/cover no-repeat;
+  color: #fff;
+  padding: 100px 20px;
+}
+
+/* Buttons */
+.btn {
+  background: #2E6F40;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+/* Menu Items with Images */
+.menu-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.menu-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 15px;
+}
+
+.menu-info h3 {
+  margin: 0;
+  color: #2E6F40;
+}
+
+.menu-info p {
+  margin: 5px 0;
+}
+
+/* Footer */
+footer {
+  background: #f2f2f2;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+/* Lists */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: #2E6F40;
+}
