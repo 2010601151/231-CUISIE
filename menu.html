@@ -1,287 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Menu – Taste Liberia</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      font-family: Poppins, sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-
-    header {
-      background: #2E6F40;
-      color: #fff;
-      padding: 15px;
-      text-align: center;
-    }
-
-    nav a {
-      color: #fff;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover { text-decoration: underline; }
-
-    .menu-section {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
-      gap: 20px;
-    }
-
-    .menu-item {
-      background: #f8f8f8;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-      width: 220px;
-      text-align: center;
-      padding: 15px;
-      transition: transform 0.2s;
-    }
-
-    .menu-item:hover { transform: translateY(-5px); }
-
-    .menu-img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    .menu-info h3 {
-      color: #2E6F40;
-      margin: 10px 0 5px 0;
-    }
-
-    .btn {
-      background: #2E6F40;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .btn:hover { background: #246036; }
-
-    .cart-section {
-      padding: 20px;
-      text-align: center;
-      background: #f2f2f2;
-    }
-
-    #customer-info input {
-      width: 90%;
-      padding: 10px;
-      margin: 5px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    /* Modal Styles */
-    .modal {
-      display: none; 
-      position: fixed; 
-      z-index: 1000; 
-      padding-top: 100px; 
-      left: 0;
-      top: 0;
-      width: 100%; 
-      height: 100%; 
-      overflow: auto;
-      background-color: rgba(0,0,0,0.5);
-    }
-    .modal-content {
-      background-color: #fff;
-      margin: auto;
-      padding: 20px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 500px;
-      text-align: left;
-    }
-    .close {
-      color: #2E6F40;
-      float: right;
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .copy-btn {
-      background: #2E6F40;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      margin-top: 10px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .copy-btn:hover { background: #246036; }
-
-    footer {
-      background: #2E6F40;
-      color: #fff;
-      padding: 15px;
-      text-align: center;
-    }
-
-    @media (max-width: 600px){
-      .menu-item { width: 90%; }
-      #customer-info input { width: 95%; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu – Taste Liberia</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header>
-    <h1>🇱🇷 Taste Liberia – Menu</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="#menu">Menu</a>
-      <a href="#cart-section">Order</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="menu-section" id="menu"></section>
-
-    <section class="cart-section" id="cart-section">
-      <h2>Your Order</h2>
-      <div id="cart-summary">No items yet.</div>
-
-      <div id="customer-info">
-        <input type="text" id="name" placeholder="Full Name" required /><br>
-        <input type="text" id="phone" placeholder="Phone Number" required /><br>
-        <input type="text" id="address" placeholder="Delivery Address" required /><br>
-      </div>
-
-      <button id="pay-button" class="btn">Place Order / Pay</button>
-    </section>
-  </main>
-
-  <!-- Modal -->
-  <div id="orderModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h3>Order Summary</h3>
-      <div id="modal-summary"></div>
-      <p><b>Payment Options:</b></p>
-      <p>💵 Cash App: <span id="cash-app">$nharper2929</span></p>
-      <p>🏦 Zelle: <span id="zelle">3022571662</span></p>
-      <button class="copy-btn" id="copy-payment">Copy Payment Info</button>
-    </div>
+<header>
+  <div class="header-container">
+    <img src="logo.jpeg" alt="Taste Liberia Logo" class="logo">
+    <h1>🇱🇷 Taste Liberia</h1>
   </div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="checkout.html">Order</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-  <footer>
-    <p>📍 Wilmington, Delaware | 📞 +1 (302) 257-1662</p>
-    <p>&copy; 2025 Taste Liberia – 231 Cuisine & Catering Services</p>
-  </footer>
+<section class="menu-section" id="menu"></section>
 
-  <script>
-    const menuItems = [
-      { name: "Pepper Goat", price: 30, img: "images/pepper-goat.jpg" },
-      { name: "Liberian Veg Jollof Rice", price: 17, img: "images/veg-jollof.jpg" },
-      { name: "Bake Fish Platter with Plantain", price: 25, img: "images/bake-fish.jpg" },
-      { name: "Nimba GB Soup with Fufu", price: 30, img: "images/gb-soup.jpg" },
-      { name: "Palm Butter with Rice", price: 25, img: "images/palm-butter.jpg" }
-    ];
+<footer>
+  <p>📍 Wilmington, Delaware | 📞 +1 (302) 257-1662 | ✉️ Nellie@231cuisine.com</p>
+  <p>Follow us on <a href="https://instagram.com/231cuisine" target="_blank">Instagram</a></p>
+  <p>&copy; 2025 231 Cuisine & Catering Services</p>
+</footer>
 
-    const menuSection = document.getElementById("menu");
-    const cartSummary = document.getElementById("cart-summary");
-    const payButton = document.getElementById("pay-button");
-    let cart = [];
-
-    // Render menu items as cards
-    menuItems.forEach((item, index) => {
-      const div = document.createElement("div");
-      div.className = "menu-item";
-      div.innerHTML = `
-        <img src="${item.img}" alt="${item.name}" class="menu-img">
-        <div class="menu-info">
-          <h3>${item.name}</h3>
-          <p>$${item.price}</p>
-        </div>
-        <button class="btn" onclick="addToCart(${index})">Add to Cart</button>
-      `;
-      menuSection.appendChild(div);
-    });
-
-    function addToCart(index) {
-      cart.push(menuItems[index]);
-      renderCart();
-    }
-
-    function renderCart() {
-      if(cart.length === 0){
-        cartSummary.innerHTML = "No items yet.";
-        return;
-      }
-      let html = "<ul>";
-      let total = 0;
-      cart.forEach(item => {
-        html += `<li>${item.name} - $${item.price}</li>`;
-        total += item.price;
-      });
-      html += `</ul><p><b>Total: $${total}</b></p>`;
-      cartSummary.innerHTML = html;
-    }
-
-    // Modal logic
-    const modal = document.getElementById("orderModal");
-    const modalSummary = document.getElementById("modal-summary");
-    const spanClose = document.getElementsByClassName("close")[0];
-    const copyBtn = document.getElementById("copy-payment");
-
-    payButton.addEventListener("click", () => {
-      const name = document.getElementById("name").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const address = document.getElementById("address").value.trim();
-
-      if(cart.length === 0){
-        alert("Please add items to your cart first.");
-        return;
-      }
-
-      if(!name || !phone || !address){
-        alert("Please fill in all your details.");
-        return;
-      }
-
-      // Build order summary
-      let total = cart.reduce((sum, item) => sum + item.price, 0);
-      let summaryHTML = `<p><b>Name:</b> ${name}<br>
-                         <b>Phone:</b> ${phone}<br>
-                         <b>Address:</b> ${address}</p>
-                         <ul>`;
-      cart.forEach(item => {
-        summaryHTML += `<li>${item.name} - $${item.price}</li>`;
-      });
-      summaryHTML += `</ul><p><b>Total: $${total}</b></p>`;
-      modalSummary.innerHTML = summaryHTML;
-
-      modal.style.display = "block";
-    });
-
-    spanClose.onclick = function() { modal.style.display = "none"; }
-    window.onclick = function(event) { if(event.target == modal) modal.style.display = "none"; }
-
-    copyBtn.addEventListener("click", () => {
-      const paymentText = `Cash App: $nharper2929\nZelle: 3022571662`;
-      navigator.clipboard.writeText(paymentText).then(() => {
-        alert("Payment info copied! Paste it in your app to pay.");
-      });
-    });
-  </script>
-
+<script src="app.js"></script>
 </body>
 </html>
