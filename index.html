@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-<!-- AOS CSS -->
+<!-- AOS CSS for animations -->
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 <style>
@@ -32,14 +32,12 @@
     top: 0;
     z-index: 1000;
   }
-
   .header-container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 15px;
   }
-
   .logo {
     width: 70px;
     height: 70px;
@@ -47,11 +45,9 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     animation: float 3s ease-in-out infinite;
   }
-
   nav {
     margin-top: 10px;
   }
-
   nav a {
     color: white;
     text-decoration: none;
@@ -59,7 +55,6 @@
     font-weight: 600;
     transition: 0.3s;
   }
-
   nav a:hover { text-decoration: underline; color: #ffe4b3; }
 
   /* Hero */
@@ -95,40 +90,73 @@
   }
   .hero .btn:hover { background-color: #ff9933; transform: scale(1.05); }
 
-  /* Favorites */
-  .favorites {
-    padding: 60px 20px;
+  /* Featured Dishes */
+  .featured-dishes {
+    padding: 50px 20px;
     text-align: center;
   }
-  .favorites h2 { color: #b34d00; font-size: 2.5em; margin-bottom: 40px; }
-  .favorites-grid {
+  .featured-dishes h2 {
+    color: #2E6F40;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+  }
+  .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
   }
-  .favorites-card {
-    background: #fff;
+  .dish {
+    background-color: #fff;
+    padding: 15px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
   }
-  .favorites-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-  .favorites-card img { width: 100%; height: 180px; object-fit: cover; }
-  .favorites-card .card-content { padding: 15px; text-align: left; }
-  .favorites-card h3 { margin: 0 0 10px 0; color: #2E6F40; }
-  .favorites-card p { margin: 0; font-size: 0.95em; }
+  .dish:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+  .dish img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; transition: transform 0.5s; }
+  .dish:hover img { transform: scale(1.05); }
+  .dish h3 { color: #2E6F40; margin: 10px 0 5px 0; }
+  .dish p { font-weight: bold; color: #ff9933; margin: 0; }
 
-  /* Menu Embed */
+  /* Customer Favorites */
+  .favorites {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #2E6F40;
+  }
+  .favorites h2 { color: #fff; font-size: 2.5em; margin-bottom: 40px; }
+  .favorites ul {
+    list-style: none;
+    padding: 0;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .favorites li {
+    background-color: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+  .favorites li:hover { transform: translateY(-5px); }
+
+  /* Canva Menu Embed */
   .menu-embed {
     margin: 60px auto;
     width: 90%;
     max-width: 700px;
     text-align: center;
   }
-  .menu-embed iframe { border: none; border-radius: 8px; width: 100%; height: 600px; }
+  .menu-embed iframe {
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    height: 600px;
+  }
   .menu-embed a {
     display: inline-block;
     margin-top: 15px;
@@ -138,6 +166,25 @@
     transition: 0.3s;
   }
   .menu-embed a:hover { text-decoration: underline; }
+
+  /* Floating Order Button */
+  .order-now-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff9933;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.2s, background-color 0.3s;
+    animation: float 3s ease-in-out infinite;
+    text-decoration: none;
+  }
+  .order-now-btn:hover { transform: scale(1.05); background-color: #2E6F40; }
 
   /* Footer */
   footer {
@@ -154,10 +201,8 @@
   @keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);} }
 
   /* Responsive */
-  @media(max-width: 768px){
-    .hero h2 { font-size: 2em; }
-    .hero p { font-size: 1em; }
-  }
+  @media(max-width: 992px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 600px) { .grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -183,53 +228,48 @@
   <a href="menu.html" class="btn">View Menu</a>
 </section>
 
-<section class="favorites">
-  <h2 data-aos="fade-up" data-aos-duration="1000">🔥 Customer Favorites</h2>
-  <div class="favorites-grid">
-    <div class="favorites-card" data-aos="fade-up" data-aos-delay="100">
-      <img src="pepper-goat.jpeg" alt="Pepper Goat">
-      <div class="card-content">
-        <h3>Pepper Goat – $30</h3>
-        <p>Tender goat meat simmered in a spicy, flavorful sauce.</p>
-      </div>
-    </div>
-    <div class="favorites-card" data-aos="fade-up" data-aos-delay="200">
-      <img src="jollof.jpeg" alt="Liberian Veg Jollof Rice">
-      <div class="card-content">
-        <h3>Liberian Veg Jollof Rice – $17</h3>
-        <p>A vibrant rice dish cooked with vegetables and signature spices.</p>
-      </div>
-    </div>
-    <div class="favorites-card" data-aos="fade-up" data-aos-delay="300">
-      <img src="Bake Fish.jpeg" alt="Bake Fish Platter with Plantain">
-      <div class="card-content">
-        <h3>Bake Fish Platter – $25</h3>
-        <p>Perfectly seasoned fish paired with golden fried plantains.</p>
-      </div>
-    </div>
-    <div class="favorites-card" data-aos="fade-up" data-aos-delay="400">
-      <img src="GB.jpeg" alt="Nimba GB Soup with Fufu">
-      <div class="card-content">
-        <h3>Nimba GB Soup with Fufu – $30</h3>
-        <p>A rich traditional soup that warms the soul, served with soft fufu.</p>
-      </div>
-    </div>
-    <div class="favorites-card" data-aos="fade-up" data-aos-delay="500">
-      <img src="palm.jpeg" alt="Palm Butter with Rice">
-      <div class="card-content">
-        <h3>Palm Butter with Rice – $25</h3>
-        <p>A creamy, spicy palm butter sauce paired with fluffy rice.</p>
-      </div>
-    </div>
+<section class="featured-dishes" data-aos="fade-up" data-aos-duration="1000">
+  <h2>🍲 Featured Dishes</h2>
+  <div class="grid">
+    <div class="dish"><img src="pepper-goat.jpeg" alt="Pepper Goat"><h3>Pepper Goat</h3><p>$30</p></div>
+    <div class="dish"><img src="jollof.jpeg" alt="Liberian Veg Jollof Rice"><h3>Liberian Veg Jollof Rice</h3><p>$17</p></div>
+    <div class="dish"><img src="Bake Fish.jpeg" alt="Bake Fish Platter"><h3>Bake Fish Platter</h3><p>$25</p></div>
+    <div class="dish"><img src="GB.jpeg" alt="Nimba GB Soup"><h3>Nimba GB Soup</h3><p>$30</p></div>
+    <div class="dish"><img src="palm.jpeg" alt="Palm Butter with Rice"><h3>Palm Butter with Rice</h3><p>$25</p></div>
   </div>
+</section>
+
+<section class="favorites" data-aos="fade-up" data-aos-duration="1000">
+  <h2>🔥 Customer Favorites</h2>
+  <ul>
+    <li><b>Pepper Goat – $30</b><br>Tender goat meat simmered in a spicy, flavorful sauce.</li>
+    <li><b>Liberian Veg Jollof Rice – $17</b><br>A vibrant rice dish cooked with vegetables and signature spices.</li>
+    <li><b>Bake Fish Platter with Plantain – $25</b><br>Perfectly seasoned fish paired with golden fried plantains.</li>
+    <li><b>Nimba GB Soup with Fufu – $30</b><br>A rich traditional soup that warms the soul, served with soft fufu.</li>
+    <li><b>Palm Butter with Rice – $25</b><br>A creamy, spicy palm butter sauce paired with fluffy rice.</li>
+  </ul>
 </section>
 
 <section class="menu-embed" data-aos="fade-up" data-aos-duration="1000">
   <h2>📜 Our Illustrated Menu</h2>
-  <iframe src="https://www.canva.com/design/DAG2ROvoulQ/fMZyLHAZ4b5EllpZmVpc8w/view?embed" allowfullscreen></iframe>
+  <iframe loading="lazy" src="https://www.canva.com/design/DAG2ROvoulQ/fMZyLHAZ4b5EllpZmVpc8w/view?embed" allowfullscreen></iframe>
   <a href="https://www.canva.com/design/DAG2ROvoulQ/view" target="_blank">View Full Menu</a>
 </section>
+
+<!-- Floating Order Button -->
+<a href="checkout.html" class="order-now-btn">Order Now 🛒</a>
 
 <footer data-aos="fade-up" data-aos-duration="1000">
   <p>📍 Wilmington, Delaware | 📞 +1 (302) 257-1662 | ✉️ Nellie@231cuisine.com</p>
   <p>Follow us on <a href="https://instagram.com/231cuisine" target="_blank">Instagram</a></p>
+  <p>&copy; 2025 231 Cuisine & Catering Services</p>
+</footer>
+
+<!-- AOS JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+</body>
+</html>
