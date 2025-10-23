@@ -5,6 +5,120 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About – Taste Liberia</title>
 <link rel="stylesheet" href="style.css">
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fffaf5;
+    color: #333;
+    overflow-x: hidden;
+  }
+
+  /* Header */
+  header {
+    background: linear-gradient(90deg, #2E6F40, #2E6F40);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    animation: fadeInDown 1s ease-in;
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    animation: float 3s ease-in-out infinite;
+  }
+
+  nav a {
+    margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+
+  nav a:hover { color: #ffd700; }
+
+  /* Animations */
+  @keyframes fadeInDown { from {opacity:0; transform: translateY(-20px);} to {opacity:1; transform: translateY(0);} }
+  @keyframes fadeInUp { from {opacity:0; transform: translateY(20px);} to {opacity:1; transform: translateY(0);} }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+  /* Our Story Section */
+  #our-story {
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    animation: fadeInUp 1s ease-in;
+  }
+
+  #our-story h2 {
+    font-size: 2.5em;
+    color: #b34d00;
+    margin-bottom: 20px;
+  }
+
+  #our-story p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+  }
+
+  #our-story p:nth-child(2) { animation-delay: 0.2s; }
+  #our-story p:nth-child(3) { animation-delay: 0.4s; }
+  #our-story p:nth-child(4) { animation-delay: 0.6s; }
+  #our-story p:nth-child(5) { animation-delay: 0.8s; }
+  #our-story h3 {
+    margin-top: 40px;
+    font-size: 1.5em;
+    color: #b34d00;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 1s;
+    opacity: 0;
+  }
+
+  /* Contact info */
+  #our-story .contact-info {
+    margin-top: 30px;
+    font-size: 1.1em;
+    line-height: 1.8;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 1.2s;
+    opacity: 0;
+  }
+
+  #our-story .contact-info a { color: #b34d00; text-decoration: none; }
+  #our-story .contact-info a:hover { text-decoration: underline; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2E6F40;
+    color: white;
+    margin-top: 40px;
+    animation: fadeInUp 1s ease-in;
+  }
+
+  /* Responsive */
+  @media(max-width: 600px) {
+    #our-story h2 { font-size: 2em; }
+    #our-story h3 { font-size: 1.2em; }
+  }
+</style>
 </head>
 <body>
 
@@ -23,11 +137,22 @@
 </header>
 
 <main>
-  <section>
-    <h2>Our Story</h2>
-    <p>Welcome to 231 Cuisine & Catering Services, based in Wilmington, Delaware. We bring authentic Liberian flavors to your plate — from traditional soups and rice dishes to sweet pastries and snacks.</p>
-    <p>We offer dine-in, pickup, delivery, and catering for events. Every meal is cooked with love and pride for our Liberian roots.</p>
-  </section>
+<section id="our-story">
+  <h2>Our Story</h2>
+  <p>At <strong>231 Cuisine & Catering Services</strong>, every dish tells a story — a story of <em>home, heritage, and heart.</em></p>
+  <p>Born from a simple dream to share the warmth, comfort, and bold flavors of Liberian and West African cuisine, 231 Cuisine has grown from humble home-cooked beginnings into a movement of love through food. What started as meals for friends and family has blossomed into a full culinary experience — one that celebrates culture, community, and connection.</p>
+  <p>Every pot of <strong>Jollof Rice</strong>, every bowl of <strong>Pepper Soup</strong>, and each sweet bite of <strong>Kala Donuts</strong> carries the essence of Liberia — a reminder of where we come from and a taste of who we are.</p>
+  <p>Our name, <strong>“231”</strong>, is more than a number. It’s the international calling code of Liberia — a symbol of pride, identity, and unity that connects us to our roots no matter where we are.</p>
+  <p>Whether it’s a <strong>wedding</strong>, <strong>birthday celebration</strong>, <strong>church event</strong>, or <strong>cultural festival</strong>, we bring the authentic taste of home to your table — <strong>seasoned with passion, prepared with love, and served with joy.</strong></p>
+  <h3>Come experience the flavor of Liberia — <em>Your Homeland on a Plate.</em></h3>
+
+  <div class="contact-info">
+    <p><strong>📍 Wilmington, Delaware</strong></p>
+    <p><strong>📞 302-257-1662 | 302-553-4964</strong></p>
+    <p><strong>✉️</strong> <a href="mailto:pauline@231cuisine.com">pauline@231cuisine.com</a></p>
+    <p style="margin-top: 15px; font-weight: bold; font-size: 1.2em;">Taste Liberia in Every Bite.</p>
+  </div>
+</section>
 </main>
 
 <footer>
