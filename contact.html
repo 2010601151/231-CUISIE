@@ -4,7 +4,145 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact – Taste Liberia</title>
-<link rel="stylesheet" href="style.css">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #2E6F40, #1F4E2D);
+    color: white;
+  }
+
+  /* Header */
+  header {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.2);
+    animation: slideDown 1s ease-out;
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  nav a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s, transform 0.3s;
+  }
+
+  nav a:hover {
+    color: #ffd700;
+    transform: scale(1.1);
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 20px;
+  }
+
+  .contact-card {
+    background: rgba(255,255,255,0.1);
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    width: 300px;
+    text-align: center;
+    cursor: pointer;
+    animation: fadeInUp 1s ease forwards;
+  }
+
+  .contact-card:nth-child(2) { animation-delay: 0.2s; }
+  .contact-card:nth-child(3) { animation-delay: 0.4s; }
+  .contact-card:nth-child(4) { animation-delay: 0.6s; }
+  .contact-card:nth-child(5) { animation-delay: 0.8s; }
+
+  h3 {
+    margin-top: 30px;
+    animation: fadeInUp 1s ease forwards;
+  }
+
+  a {
+    color: #ffd700;
+    text-decoration: none;
+    transition: transform 0.3s;
+  }
+
+  a:hover { transform: scale(1.1); }
+
+  img.qr {
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    animation: fadeInScale 1s ease forwards;
+  }
+
+  footer {
+    text-align: center;
+    padding: 15px;
+    background: rgba(0,0,0,0.2);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+    margin-top: 40px;
+    animation: fadeInUp 1s ease forwards;
+  }
+
+  /* Toast notification */
+  #toast {
+    position: fixed;
+    bottom: 20px;
+    right: -300px;
+    background: #000000;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    font-weight: bold;
+    z-index: 1000;
+    transition: right 0.5s ease-in-out, opacity 0.5s;
+    opacity: 0;
+  }
+
+  #toast.show {
+    right: 20px;
+    opacity: 1;
+  }
+
+  /* Animations */
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes slideDown {
+    0% { opacity: 0; transform: translateY(-30px);}
+    100% { opacity: 1; transform: translateY(0);}
+  }
+
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px);}
+    100% { opacity: 1; transform: translateY(0);}
+  }
+
+  @keyframes fadeInScale {
+    0% { opacity: 0; transform: scale(0.8);}
+    100% { opacity: 1; transform: scale(1);}
+  }
+</style>
 </head>
 <body>
 
@@ -23,21 +161,37 @@
 </header>
 
 <main>
-  <p>📍 Wilmington, Delaware</p>
-  <p>📞 +1 (302) 257-1662</p>
-  <p>✉️ Nellie@231cuisine.com</p>
-  <p>💵 Cash App: $nharper2929</p>
-  <p>🏦 Zelle: 3022571662</p>
+  <div class="contact-card" onclick="copyText('📍 Wilmington, Delaware')">📍 Wilmington, Delaware</div>
+  <div class="contact-card" onclick="copyText('+1 (302) 257-1662')">📞 +1 (302) 257-1662</div>
+  <div class="contact-card" onclick="copyText('Nellie@231cuisine.com')">✉️ Nellie@231cuisine.com</div>
+  <div class="contact-card" onclick="copyText('💵 Cash App: $nharper2929 | 🏦 Zelle: 3022571662')">
+    💵 Cash App: $nharper2929 | 🏦 Zelle: 3022571662
+  </div>
+
   <h3>Follow Us</h3>
-  <p>
+  <div class="contact-card">
     <a href="https://instagram.com/231cuisine" target="_blank">Instagram: @231cuisine</a><br>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://instagram.com/231cuisine&size=150x150" alt="Instagram QR">
-  </p>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://instagram.com/231cuisine&size=150x150" alt="Instagram QR" class="qr">
+  </div>
 </main>
 
 <footer>
   <p>&copy; 2025 231 Cuisine & Catering Services</p>
 </footer>
+
+<!-- Toast Notification -->
+<div id="toast"></div>
+
+<script>
+  function copyText(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      const toast = document.getElementById('toast');
+      toast.innerText = `"${text}" copied!`;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+    });
+  }
+</script>
 
 </body>
 </html>
