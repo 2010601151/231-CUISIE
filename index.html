@@ -4,26 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🇱🇷 Taste Liberia – 231 Cuisine & Catering Services</title>
-<link rel="stylesheet" href="style.css">
+
+<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- AOS CSS -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 <style>
   body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: #fff;
+    background-color: #fffaf5;
     color: #333;
     overflow-x: hidden;
   }
 
+  /* Header */
   header {
     background: linear-gradient(90deg, #2E6F40, #2E6F40);
     color: white;
     padding: 20px;
     text-align: center;
-    animation: fadeInDown 1s ease-in;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
 
   .header-container {
@@ -53,12 +60,11 @@
     transition: 0.3s;
   }
 
-  nav a:hover {
-    text-decoration: underline;
-    color: #ffe4b3;
-  }
+  nav a:hover { text-decoration: underline; color: #ffe4b3; }
 
+  /* Hero */
   .hero {
+    position: relative;
     background-image: url('hero-bg.jpg');
     background-size: cover;
     background-position: center;
@@ -66,20 +72,18 @@
     text-align: center;
     color: white;
     background-attachment: fixed;
-    animation: fadeIn 2s ease-in;
   }
-
-  .hero h2 {
-    font-size: 2.5em;
-    margin-bottom: 15px;
+  .hero::before {
+    content: "";
+    position: absolute;
+    top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.35);
+    z-index: 0;
   }
-
-  .hero p {
-    font-size: 1.2em;
-    margin-bottom: 25px;
-  }
-
-  .btn {
+  .hero h2, .hero p, .hero .btn { position: relative; z-index: 1; }
+  .hero h2 { font-size: 3em; margin-bottom: 15px; }
+  .hero p { font-size: 1.2em; margin-bottom: 25px; }
+  .hero .btn {
     background-color: #2E6F40;
     color: white;
     padding: 12px 25px;
@@ -89,98 +93,76 @@
     margin: 5px;
     transition: 0.3s;
   }
+  .hero .btn:hover { background-color: #ff9933; transform: scale(1.05); }
 
-  .btn:hover {
-    background-color: #ff9933;
-    transform: scale(1.05);
-  }
-
+  /* Favorites */
   .favorites {
-    padding: 50px 20px;
+    padding: 60px 20px;
     text-align: center;
-    background-color: #2E6F40;
-    animation: fadeInUp 1.5s ease;
   }
-
-  .favorites h2 {
-    color: #000000;
-    font-size: 2em;
-    margin-bottom: 25px;
-  }
-
-  .favorites ul {
-    list-style: none;
-    padding: 0;
-    max-width: 700px;
+  .favorites h2 { color: #b34d00; font-size: 2.5em; margin-bottom: 40px; }
+  .favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
     margin: 0 auto;
-    text-align: left;
   }
-
-  .favorites li {
-    background-color: #fff;
-    padding: 15px;
-    margin: 10px 0;
+  .favorites-card {
+    background: #fff;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
   }
+  .favorites-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+  .favorites-card img { width: 100%; height: 180px; object-fit: cover; }
+  .favorites-card .card-content { padding: 15px; text-align: left; }
+  .favorites-card h3 { margin: 0 0 10px 0; color: #2E6F40; }
+  .favorites-card p { margin: 0; font-size: 0.95em; }
 
-  .favorites li:hover {
-    transform: translateY(-5px);
-  }
-
-  footer {
-    background-color: #2E6F40;
-    color: white;
-    text-align: center;
-    padding: 25px;
-    font-size: 0.9em;
-  }
-
-  footer a {
-    color: #2E6F40;
-    text-decoration: none;
-  }
-
-  footer a:hover {
-    text-decoration: underline;
-  }
-
-  /* Canva Menu Embed Styling */
+  /* Menu Embed */
   .menu-embed {
     margin: 60px auto;
     width: 90%;
     max-width: 700px;
     text-align: center;
-    animation: fadeIn 2s ease;
   }
+  .menu-embed iframe { border: none; border-radius: 8px; width: 100%; height: 600px; }
+  .menu-embed a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #b34d00;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  .menu-embed a:hover { text-decoration: underline; }
+
+  /* Footer */
+  footer {
+    background-color: #2E6F40;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 0.95em;
+  }
+  footer a { color: #ffe4b3; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
 
   /* Animations */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);} }
 
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(50px); }
-    to { opacity: 1; transform: translateY(0); }
+  /* Responsive */
+  @media(max-width: 768px){
+    .hero h2 { font-size: 2em; }
+    .hero p { font-size: 1em; }
   }
-
-  @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-
 </style>
 </head>
 <body>
 
-<header>
+<header data-aos="fade-down" data-aos-duration="1000">
   <div class="header-container">
     <img src="logo.jpeg" alt="Taste Liberia Logo" class="logo">
     <h1>🇱🇷 Taste Liberia</h1>
@@ -194,7 +176,7 @@
   </nav>
 </header>
 
-<section class="hero">
+<section class="hero" data-aos="fade-up" data-aos-duration="1000">
   <h2>Your Homeland on a Plate</h2>
   <p>Welcome to 231 Cuisine & Catering Services — every dish tells a story of home, heritage, and heart.</p>
   <a href="checkout.html" class="btn">Order Now</a>
@@ -202,33 +184,52 @@
 </section>
 
 <section class="favorites">
-  <h2>🔥 Customer Favorites</h2>
-  <ul>
-    <li><b>Pepper Goat – $30</b><br>Tender goat meat simmered in a spicy, flavorful sauce.</li>
-    <li><b>Liberian Veg Jollof Rice – $17</b><br>A vibrant rice dish cooked with vegetables and signature spices.</li>
-    <li><b>Bake Fish Platter with Plantain – $25</b><br>Perfectly seasoned fish paired with golden fried plantains.</li>
-    <li><b>Nimba GB Soup with Fufu – $30</b><br>A rich traditional soup that warms the soul, served with soft fufu.</li>
-    <li><b>Palm Butter with Rice – $25</b><br>A creamy, spicy palm butter sauce paired with fluffy rice.</li>
-  </ul>
-</section>
-
-<section class="menu-embed">
-  <h2>📜 Our Illustrated Menu</h2>
-  <div style="position: relative; width: 100%; height: 0; padding-top: 141.4286%;
-   box-shadow: 0 2px 8px rgba(63,69,81,0.16); margin-top: 1.6em; border-radius: 8px; overflow: hidden;">
-    <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none;"
-      src="https://www.canva.com/design/DAG2ROvoulQ/fMZyLHAZ4b5EllpZmVpc8w/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-    </iframe>
+  <h2 data-aos="fade-up" data-aos-duration="1000">🔥 Customer Favorites</h2>
+  <div class="favorites-grid">
+    <div class="favorites-card" data-aos="fade-up" data-aos-delay="100">
+      <img src="pepper-goat.jpeg" alt="Pepper Goat">
+      <div class="card-content">
+        <h3>Pepper Goat – $30</h3>
+        <p>Tender goat meat simmered in a spicy, flavorful sauce.</p>
+      </div>
+    </div>
+    <div class="favorites-card" data-aos="fade-up" data-aos-delay="200">
+      <img src="jollof.jpeg" alt="Liberian Veg Jollof Rice">
+      <div class="card-content">
+        <h3>Liberian Veg Jollof Rice – $17</h3>
+        <p>A vibrant rice dish cooked with vegetables and signature spices.</p>
+      </div>
+    </div>
+    <div class="favorites-card" data-aos="fade-up" data-aos-delay="300">
+      <img src="Bake Fish.jpeg" alt="Bake Fish Platter with Plantain">
+      <div class="card-content">
+        <h3>Bake Fish Platter – $25</h3>
+        <p>Perfectly seasoned fish paired with golden fried plantains.</p>
+      </div>
+    </div>
+    <div class="favorites-card" data-aos="fade-up" data-aos-delay="400">
+      <img src="GB.jpeg" alt="Nimba GB Soup with Fufu">
+      <div class="card-content">
+        <h3>Nimba GB Soup with Fufu – $30</h3>
+        <p>A rich traditional soup that warms the soul, served with soft fufu.</p>
+      </div>
+    </div>
+    <div class="favorites-card" data-aos="fade-up" data-aos-delay="500">
+      <img src="palm.jpeg" alt="Palm Butter with Rice">
+      <div class="card-content">
+        <h3>Palm Butter with Rice – $25</h3>
+        <p>A creamy, spicy palm butter sauce paired with fluffy rice.</p>
+      </div>
+    </div>
   </div>
-  <a href="https://www.canva.com/design/DAG2ROvoulQ/fMZyLHAZ4b5EllpZmVpc8w/view?utm_content=DAG2ROvoulQ&utm_campaign=designshare&utm_medium=embeds&utm_source=link"
-     target="_blank" rel="noopener">🍲</a>
 </section>
 
-<footer>
+<section class="menu-embed" data-aos="fade-up" data-aos-duration="1000">
+  <h2>📜 Our Illustrated Menu</h2>
+  <iframe src="https://www.canva.com/design/DAG2ROvoulQ/fMZyLHAZ4b5EllpZmVpc8w/view?embed" allowfullscreen></iframe>
+  <a href="https://www.canva.com/design/DAG2ROvoulQ/view" target="_blank">View Full Menu</a>
+</section>
+
+<footer data-aos="fade-up" data-aos-duration="1000">
   <p>📍 Wilmington, Delaware | 📞 +1 (302) 257-1662 | ✉️ Nellie@231cuisine.com</p>
   <p>Follow us on <a href="https://instagram.com/231cuisine" target="_blank">Instagram</a></p>
-  <p>&copy; 2025 231 Cuisine & Catering Services</p>
-</footer>
-
-</body>
-</html>
