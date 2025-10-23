@@ -114,19 +114,54 @@ body {
     .hero .btn { margin: 5px; }
 
     /* Menu Section */
-    .menu-section { display: flex; flex-wrap: wrap; gap: 20px; padding: 20px; justify-content: center; }
-    .menu-item {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      overflow: hidden;
-      width: 250px;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .menu-item:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-    .menu-img { width: 100%; height: 180px; object-fit: cover; transition: transform 0.5s ease; }
-    .menu-item:hover .menu-img { transform: scale(1.05); }
+.menu-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+}
+
+/* Menu Items */
+.menu-item {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  width: 100%; /* Full width of grid cell */
+  max-width: 250px; /* Optional to prevent too large on big screens */
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.menu-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.menu-item:hover .menu-img {
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments (optional) */
+@media (max-width: 768px) {
+  .menu-section {
+    grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-section {
+    grid-template-columns: 1fr; /* 1 per row on phones */
+  }
+}
 
     /* Table & Buttons */
     table { width: 100%; border-collapse: collapse; margin-top: 15px; }
