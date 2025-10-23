@@ -5,13 +5,148 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Menu – Taste Liberia</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff8f0;
+    }
+
+    /* Notification Styles */
+    #cart-notification {
+      position: fixed;
+      top: 20px;
+      right: -300px;
+      background: #000000;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      font-weight: bold;
+      transition: right 0.5s ease-in-out, opacity 0.5s;
+      opacity: 0;
+    }
+    #cart-notification.show {
+      right: 20px;
+      opacity: 1;
+    }
+
+    /* Floating Mini Cart */
+    #mini-cart {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ffd700;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 50px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      cursor: pointer;
+      z-index: 1000;
+      font-weight: bold;
+      transition: transform 0.2s, background 0.2s;
+    }
+    #mini-cart:hover {
+      transform: scale(1.05);
+      background: #ffd700;
+    }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #2E6F40; /* Updated background color */
+}
+
+    /* Mini-cart dropdown preview */
+    #mini-cart-preview {
+      position: absolute;
+      bottom: 60px;
+      right: 0;
+      background: white;
+      color: #333;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      display: none;
+      min-width: 220px;
+      z-index: 1001;
+    }
+    #mini-cart:hover #mini-cart-preview {
+      display: block;
+    }
+    #mini-cart-preview p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+     header {
+    background: linear-gradient(90deg, #2E6F40, #2E6F40);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    animation: fadeInDown 1s ease-in;
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    animation: float 3s ease-in-out infinite;
+  }
+
+    nav a { margin: 0 10px; color: #fff; text-decoration: none; font-weight: bold; }
+    nav a:hover { color: #ffd700; }
+
+    /* Hero */
+    .hero { text-align: center; padding: 40px 20px; animation: fadeIn 1s ease-in; }
+    .hero h2 { font-size: 2.5rem; margin-bottom: 10px; animation: fadeInUp 1s ease-in; }
+    .hero p { font-size: 1.2rem; animation: fadeInUp 1.3s ease-in; }
+    .hero .btn { margin: 5px; }
+
+    /* Menu Section */
+    .menu-section { display: flex; flex-wrap: wrap; gap: 20px; padding: 20px; justify-content: center; }
+    .menu-item {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+      width: 250px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .menu-item:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .menu-img { width: 100%; height: 180px; object-fit: cover; transition: transform 0.5s ease; }
+    .menu-item:hover .menu-img { transform: scale(1.05); }
+
+    /* Table & Buttons */
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    table th, table td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+    table th { background: #000000; }
+    .btn { background: #2E6F40; color: #fff; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; transition: transform 0.2s, background 0.2s; }
+    .btn:hover { background: #ffd700; transform: scale(1.05); }
+    input[type="number"] { width: 50px; padding: 4px; border-radius: 4px; border: 1px solid #ccc; }
+
+    /* Animations */
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+    @keyframes fadeInUp { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
+  </style>
 </head>
 <body>
 
   <!-- Header -->
   <header>
     <div class="header-container">
-      <img src="logo.jpeg" alt="Taste Liberia Logo" class="logo">
+      <img src="logo.jpeg" alt="Taste Liberia Logo" class="logo" width="60">
       <h1>🇱🇷 Taste Liberia</h1>
     </div>
     <nav>
@@ -23,14 +158,7 @@
     </nav>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <h2>Your Homeland on a Plate</h2>
-    <p>Welcome to 231 Cuisine & Catering Services, where every dish tells a story of home, heritage, and heart.</p>
-    <a href="#order-form" class="btn">Order Now</a>
-    <a href="menu.html" class="btn">View Menu</a>
-  </section>
-
+  
   <!-- Menu Section -->
   <section class="menu-section" id="menu">
     <div class="menu-item">
@@ -39,55 +167,60 @@
         <h3>Pepper Goat – $30</h3>
         <p>Tender goat meat simmered in a spicy, flavorful sauce.</p>
       </div>
-      <input type="number" id="qty-0" value="1" min="1" style="width:50px;">
+      <input type="number" id="qty-0" value="1" min="1">
       <button class="btn" onclick="addToCart(0)">Add to Cart</button>
     </div>
-
     <div class="menu-item">
       <img src="jollof.jpeg" class="menu-img" alt="Liberian Veg Jollof Rice">
       <div class="menu-info">
         <h3>Liberian Veg Jollof Rice – $17</h3>
         <p>A vibrant rice dish cooked with vegetables and signature spices.</p>
       </div>
-      <input type="number" id="qty-1" value="1" min="1" style="width:50px;">
+      <input type="number" id="qty-1" value="1" min="1">
       <button class="btn" onclick="addToCart(1)">Add to Cart</button>
     </div>
-
     <div class="menu-item">
       <img src="Bake Fish.jpeg" class="menu-img" alt="Bake Fish Platter with Plantain">
       <div class="menu-info">
         <h3>Bake Fish Platter with Plantain – $25</h3>
         <p>Perfectly seasoned fish paired with golden fried plantains.</p>
       </div>
-      <input type="number" id="qty-2" value="1" min="1" style="width:50px;">
+      <input type="number" id="qty-2" value="1" min="1">
       <button class="btn" onclick="addToCart(2)">Add to Cart</button>
     </div>
-
     <div class="menu-item">
       <img src="GB.jpeg" class="menu-img" alt="Nimba GB Soup with Fufu">
       <div class="menu-info">
         <h3>Nimba GB Soup with Fufu – $1</h3>
         <p>A rich traditional soup that warms the soul, served with soft fufu.</p>
       </div>
-      <input type="number" id="qty-3" value="1" min="1" style="width:50px;">
+      <input type="number" id="qty-3" value="1" min="1">
       <button class="btn" onclick="addToCart(3)">Add to Cart</button>
     </div>
-
     <div class="menu-item">
       <img src="palm.jpeg" class="menu-img" alt="Palm Butter with Rice">
       <div class="menu-info">
         <h3>Palm Butter with Rice – $25</h3>
         <p>A creamy, spicy palm butter sauce paired with fluffy rice.</p>
       </div>
-      <input type="number" id="qty-4" value="1" min="1" style="width:50px;">
+      <input type="number" id="qty-4" value="1" min="1">
       <button class="btn" onclick="addToCart(4)">Add to Cart</button>
     </div>
   </section>
 
-  <!-- Cart / Order Section -->
+  <!-- Notification -->
+  <div id="cart-notification"></div>
+
+  <!-- Floating Mini-Cart -->
+  <div id="mini-cart" onclick="scrollToCart()">
+    🛒 <span id="mini-cart-count">0</span> items | $<span id="mini-cart-total">0</span>
+    <div id="mini-cart-preview"></div>
+  </div>
+
+  <!-- Order Section -->
   <section class="order-form" id="order-form">
     <h2>Your Cart</h2>
-    <table style="width:100%; text-align:left;">
+    <table>
       <thead>
         <tr>
           <th>Item</th>
@@ -123,6 +256,87 @@
     <p>&copy; 2025 231 Cuisine & Catering Services</p>
   </footer>
 
-  <script src="app.js"></script>
+  <script>
+    const menuItems = [
+      { name: 'Pepper Goat', price: 30 },
+      { name: 'Liberian Veg Jollof Rice', price: 17 },
+      { name: 'Bake Fish Platter with Plantain', price: 25 },
+      { name: 'Nimba GB Soup with Fufu', price: 1 },
+      { name: 'Palm Butter with Rice', price: 25 }
+    ];
+
+    let cart = [];
+
+    function addToCart(index) {
+      const qty = parseInt(document.getElementById(`qty-${index}`).value);
+      const item = menuItems[index];
+      const existing = cart.find(i => i.name === item.name);
+      if (existing) { existing.qty += qty; }
+      else { cart.push({ ...item, qty }); }
+
+      updateCart();
+      updateMiniCart();
+      showNotification(item.name);
+    }
+
+    function updateCart() {
+      const cartBody = document.getElementById('cart-body');
+      cartBody.innerHTML = '';
+      let total = 0;
+      cart.forEach((item, i) => {
+        total += item.price * item.qty;
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item.name}</td>
+          <td>${item.qty}</td>
+          <td>$${item.price * item.qty}</td>
+          <td><button onclick="removeItem(${i})">❌</button></td>
+        `;
+        cartBody.appendChild(row);
+      });
+      document.getElementById('cart-total').innerText = total;
+
+      const paypalItems = document.getElementById('paypal-items');
+      paypalItems.innerHTML = '';
+      cart.forEach((item, i) => {
+        paypalItems.innerHTML += `
+          <input type="hidden" name="item_name_${i+1}" value="${item.name}">
+          <input type="hidden" name="amount_${i+1}" value="${item.price}">
+          <input type="hidden" name="quantity_${i+1}" value="${item.qty}">
+        `;
+      });
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      updateCart();
+      updateMiniCart();
+    }
+
+    function showNotification(itemName) {
+      const notif = document.getElementById('cart-notification');
+      notif.innerText = `${itemName} added to cart!`;
+      notif.classList.add('show');
+      setTimeout(() => { notif.classList.remove('show'); }, 1500);
+    }
+
+    function updateMiniCart() {
+      let totalQty = 0;
+      let totalPrice = 0;
+      cart.forEach(item => { totalQty += item.qty; totalPrice += item.price * item.qty; });
+      document.getElementById('mini-cart-count').innerText = totalQty;
+      document.getElementById('mini-cart-total').innerText = totalPrice;
+
+      // Update mini-cart preview (last 3 items)
+      const preview = document.getElementById('mini-cart-preview');
+      preview.innerHTML = '';
+      const lastItems = cart.slice(-3);
+      lastItems.forEach(i => { preview.innerHTML += `<p>${i.name} x${i.qty}</p>`; });
+      if(cart.length > 3) preview.innerHTML += `<p>...and more</p>`;
+    }
+
+    function scrollToCart() { document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' }); }
+  </script>
+
 </body>
 </html>
