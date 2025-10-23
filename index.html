@@ -7,7 +7,368 @@
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu – Taste Liberia</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- AOS Animation -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<style>
+  /* Global Styles */
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fffaf5;
+    color: #333;
+    overflow-x: hidden;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  /* Header */
+  header {
+    background-color: #2E6F40;
+    color: #fff;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+
+  nav {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  nav a {
+    color: #fff;
+    margin: 0 15px;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+
+  nav a:hover {
+    color: #ffe4b3;
+    text-decoration: underline;
+  }
+
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: #fff8f0;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    color: #2E6F40;
+    margin-bottom: 10px;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+    color: #555;
+  }
+
+  /* Menu Section */
+  .menu-section {
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  .menu-section h2 {
+    font-size: 2.5rem;
+    color: #2E6F40;
+    margin-bottom: 40px;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .menu-item {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .menu-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  }
+
+  .menu-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .menu-item:hover img {
+    transform: scale(1.05);
+  }
+
+  .menu-info {
+    padding: 20px;
+  }
+
+  .menu-info h3 {
+    margin: 10px 0;
+    color: #2E6F40;
+    font-size: 1.3rem;
+  }
+
+  .menu-info p {
+    margin: 0;
+    color: #ff9933;
+    font-weight: bold;
+  }
+
+  .order-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #2E6F40;
+    color: #fff;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.3s;
+    cursor: pointer;
+  }
+
+  .order-btn:hover {
+    background-color: #ff9933;
+    transform: scale(1.05);
+  }
+
+  /* Floating Cart Button */
+  .cart-wrapper {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 1000;
+  }
+
+  .view-cart-btn {
+    background-color: #ff9933;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    display: inline-block;
+    position: relative;
+    transition: transform 0.3s, background-color 0.3s;
+    animation: pulse 2s infinite, bounce 4s infinite;
+  }
+
+  .view-cart-btn:hover {
+    background-color: #2E6F40;
+    transform: scale(1.05);
+  }
+
+  .cart-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #e60000;
+    color: #fff;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  }
+
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255,153,51,0.6); }
+    70% { box-shadow: 0 0 0 20px rgba(255,153,51,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,153,51,0); }
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-8px); }
+    60% { transform: translateY(-4px); }
+  }
+
+  /* Footer */
+  footer {
+    background-color: #2E6F40;
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 0.95rem;
+  }
+
+  footer a {
+    color: #ffe4b3;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  /* View Full Menu Button */
+  .order-now-btn {
+    display: inline-block;
+    margin: 40px auto;
+    padding: 12px 30px;
+    background-color: #2E6F40;
+    color: #fff;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+
+  .order-now-btn:hover {
+    background-color: #ff9933;
+    transform: scale(1.05);
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header data-aos="fade-down">
+  <div class="header-container">
+    <img src="logo.jpeg" alt="Taste Liberia Logo" class="logo">
+    <h1>🇱🇷 Taste Liberia</h1>
+  </div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="checkout.html">Order</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" data-aos="zoom-in">
+  <h1>Taste the Heart of Liberia 🇱🇷</h1>
+  <p>Authentic home-cooked dishes made with love and tradition.</p>
+</section>
+
+<!-- Menu Section -->
+<section class="menu-section" data-aos="fade-up">
+  <h2>🍛 Our Signature Dishes</h2>
+  <div class="menu-grid">
+
+    <div class="menu-item" data-aos="zoom-in">
+      <img src="pepper-goat.jpeg" alt="Pepper Goat">
+      <div class="menu-info">
+        <h3>Pepper Goat</h3>
+        <p>$30</p>
+        <button class="order-btn">Add to Order</button>
+      </div>
+    </div>
+
+    <div class="menu-item" data-aos="zoom-in" data-aos-delay="100">
+      <img src="jollof.jpeg" alt="Liberian Veg Jollof Rice">
+      <div class="menu-info">
+        <h3>Liberian Veg Jollof Rice</h3>
+        <p>$17</p>
+        <button class="order-btn">Add to Order</button>
+      </div>
+    </div>
+
+    <div class="menu-item" data-aos="zoom-in" data-aos-delay="200">
+      <img src="Bake Fish.jpeg" alt="Bake Fish Platter">
+      <div class="menu-info">
+        <h3>Bake Fish Platter</h3>
+        <p>$25</p>
+        <button class="order-btn">Add to Order</button>
+      </div>
+    </div>
+
+    <div class="menu-item" data-aos="zoom-in" data-aos-delay="300">
+      <img src="GB.jpeg" alt="Nimba GB Soup">
+      <div class="menu-info">
+        <h3>Nimba GB Soup</h3>
+        <p>$30</p>
+        <button class="order-btn">Add to Order</button>
+      </div>
+    </div>
+
+    <div class="menu-item" data-aos="zoom-in" data-aos-delay="400">
+      <img src="palm.jpeg" alt="Palm Butter with Rice">
+      <div class="menu-info">
+        <h3>Palm Butter with Rice</h3>
+        <p>$25</p>
+        <button class="order-btn">Add to Order</button>
+      </div>
+    </div>
+
+  </div>
+  <a href="menu.html" class="order-now-btn" data-aos="fade-up">View Full Menu</a>
+</section>
+
+<!-- Floating Cart Button -->
+<div class="cart-wrapper">
+  <a href="checkout.html" class="view-cart-btn">🛒 View Cart <span class="cart-count">0</span></a>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>📍 Wilmington, Delaware | 📞 +1 (302) 257-1662 | ✉️ Nellie@231cuisine.com</p>
+  <p>&copy; 2025 Taste Liberia – All Rights Reserved</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: true });
+
+  const orderButtons = document.querySelectorAll('.order-btn');
+  const cartCount = document.querySelector('.cart-count');
+  let count = 0;
+
+  orderButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      count++;
+      cartCount.textContent = count;
+      cartCount.style.transform = 'scale(1.3)';
+      setTimeout(() => cartCount.style.transform = 'scale(1)', 200);
+    });
+  });
+</script>
+
+</body>
+</html>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <!-- AOS CSS for animations -->
