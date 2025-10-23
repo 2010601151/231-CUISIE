@@ -4,75 +4,157 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Menu – Taste Liberia</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="style.css" />
 <style>
-body { font-family: 'Poppins', sans-serif; margin:0; background: #fff8f0; color: #333; overflow-x: hidden; transition: filter 0.3s ease; }
-header { background: #2E6F40; color: #fff; padding: 20px; text-align: center; position: sticky; top:0; z-index:100; }
-.header-container { display: flex; align-items: center; justify-content: center; gap: 15px; }
-.logo { width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
-nav a { margin:0 12px; color:#fff; text-decoration:none; font-weight:600; transition:0.3s; }
-nav a:hover { color:#FFD700; }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff8f0;
+  }
 
-.hero { text-align: center; padding: 50px 20px; background-image: url('menu-hero.jpg'); background-size: cover; background-position: center; color: #fff; position: relative; }
-.hero::before { content:""; position:absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.35); }
-.hero h2, .hero p { position: relative; z-index:1; margin: 0; }
-.hero h2 { font-size: 2.8rem; margin-bottom: 15px; }
-.hero p { font-size: 1.2rem; }
+  /* Header */
+  header {
+    background: linear-gradient(90deg, #2E6F40, #2E6F40);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    animation: fadeInDown 1s ease-in;
+  }
+  .header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+  .logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    animation: float 3s ease-in-out infinite;
+  }
+  nav a { margin: 0 10px; color: #fff; text-decoration: none; font-weight: bold; }
+  nav a:hover { color: #ffd700; }
 
-.menu-section { padding: 40px 20px; max-width: 1200px; margin: auto; }
-.category-tabs { display:flex; gap:15px; justify-content:center; margin-bottom:30px; flex-wrap:wrap; }
-.category-tabs button { background:#fff; border:2px solid #2E6F40; color:#2E6F40; padding:8px 20px; border-radius:50px; cursor:pointer; font-weight:600; transition:0.3s; }
-.category-tabs button.active, .category-tabs button:hover { background:#2E6F40; color:#FFD700; }
+  /* Hero */
+  .hero { text-align: center; padding: 40px 20px; animation: fadeIn 1s ease-in; }
+  .hero h2 { font-size: 2.5rem; margin-bottom: 10px; animation: fadeInUp 1s ease-in; }
+  .hero p { font-size: 1.2rem; animation: fadeInUp 1.3s ease-in; }
+  .hero .btn { margin: 5px; background: #2E6F40; color: white; padding: 10px 20px; border-radius: 30px; border: none; cursor: pointer; }
+  .hero .btn:hover { background: #ffd700; }
 
-.menu-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 20px; }
-.menu-item { background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); overflow:hidden; text-align:center; transition: transform 0.3s, box-shadow 0.3s; cursor:pointer; }
-.menu-item:hover { transform: translateY(-5px); box-shadow:0 8px 20px rgba(0,0,0,0.2); }
-.menu-img { width:100%; height:180px; object-fit:cover; transition: transform 0.5s ease; }
-.menu-item:hover .menu-img { transform: scale(1.05); }
-.menu-info { padding: 10px; }
-.menu-info h3 { margin:10px 0 5px 0; color:#2E6F40; font-size:1.1rem; }
-.menu-info p { font-size:0.95rem; color:#555; }
-.badge { display:inline-block; background:#FFD700; color:#2E6F40; font-weight:700; padding:2px 8px; border-radius:12px; margin-left:5px; font-size:0.8rem; }
+  /* Menu Section */
+  .menu-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+  }
+  .menu-item {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding-bottom: 10px;
+  }
+  .menu-item:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+  .menu-img { width: 100%; height: 180px; object-fit: cover; transition: transform 0.5s ease; }
+  .menu-item:hover .menu-img { transform: scale(1.05); }
+  input[type="number"] { width: 50px; padding: 4px; border-radius: 4px; border: 1px solid #ccc; margin-top: 5px; }
 
-.menu-actions { display:flex; justify-content:center; align-items:center; gap:8px; margin:10px 0 15px; }
-.menu-actions input { width:50px; text-align:center; border-radius:5px; border:1px solid #ccc; }
-.btn { background:#2E6F40; color:#fff; border:none; padding:8px 15px; border-radius:5px; cursor:pointer; font-weight:600; transition:0.2s; }
-.btn:hover { background:#FFD700; color:#2E6F40; transform:scale(1.05); }
+  /* Notification */
+  #cart-notification {
+    position: fixed;
+    top: 20px;
+    right: -300px;
+    background: #000;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    z-index: 1000;
+    font-weight: bold;
+    transition: right 0.5s ease-in-out, opacity 0.5s;
+    opacity: 0;
+  }
+  #cart-notification.show { right: 20px; opacity: 1; }
 
-#mini-cart { position:fixed; bottom:20px; right:20px; background:#FFD700; color:#2E6F40; padding:12px 20px; border-radius:50px; box-shadow:0 4px 12px rgba(0,0,0,0.3); cursor:pointer; font-weight:700; z-index:1000; }
-#mini-cart-preview { position:absolute; bottom:60px; right:0; background:#fff; color:#333; padding:10px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.2); display:none; min-width:220px; z-index:1001; }
-#mini-cart:hover #mini-cart-preview { display:block; }
-#mini-cart-preview p { margin:5px 0; font-size:14px; }
+  /* Mini Cart */
+  #mini-cart {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ffd700;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    cursor: pointer;
+    z-index: 1000;
+    font-weight: bold;
+    transition: transform 0.2s, background 0.2s;
+  }
+  #mini-cart:hover { transform: scale(1.05); background: #ffd700; }
+  #mini-cart-preview {
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    background: white;
+    color: #333;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    display: none;
+    min-width: 220px;
+    z-index: 1001;
+  }
+  #mini-cart:hover #mini-cart-preview { display: block; }
+  #mini-cart-preview p { margin: 5px 0; font-size: 14px; }
 
-.order-form { padding:40px 20px; max-width:800px; margin:auto; }
-table { width:100%; border-collapse:collapse; margin-top:15px; }
-table th, table td { padding:8px; text-align:left; border-bottom:1px solid #ddd; }
-table th { background:#2E6F40; color:#fff; }
-h2,h3,h4 { color:#2E6F40; }
+  /* Cart Table */
+  table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+  table th, table td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+  table th { background: #000; color: #fff; }
 
-footer { background:#2E6F40; color:#fff; text-align:center; padding:25px 20px; margin-top:50px; }
-footer a { color:#FFD700; text-decoration:none; }
-footer a:hover { text-decoration:underline; }
+  .btn { background: #2E6F40; color: #fff; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; transition: transform 0.2s, background 0.2s; }
+  .btn:hover { background: #ffd700; transform: scale(1.05); }
 
-/* Modal with blur and fade-in */
-.modal { display:none; position:fixed; z-index:2000; left:0; top:0; width:100%; height:100%; overflow:auto; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); animation: fadeIn 0.3s; }
-.modal-content { background:#fff; margin:10% auto; padding:20px; border-radius:12px; max-width:500px; text-align:center; position:relative; transform: translateY(-20px); animation: slideDown 0.3s forwards; }
-.modal-content img { width:100%; height:auto; border-radius:12px; margin-bottom:15px; }
-.close-modal { position:absolute; top:10px; right:15px; font-size:22px; font-weight:bold; color:#2E6F40; cursor:pointer; }
+  /* Footer */
+  footer { background: #2E6F40; color: white; text-align: center; padding: 25px; font-size: 0.9em; }
+  footer a { color: #ffd700; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
 
-@keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
-@keyframes slideDown { from{transform:translateY(-20px);opacity:0;} to{transform:translateY(0);opacity:1;} }
+  /* Animations */
+  @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+  @keyframes fadeInUp { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+  @keyframes fadeInDown { from {opacity:0; transform:translateY(-30px);} to {opacity:1; transform:translateY(0);} }
+  @keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);} }
 
-@media(max-width:768px){ .menu-grid{grid-template-columns:repeat(2,1fr);} }
-@media(max-width:480px){ .menu-grid{grid-template-columns:1fr;} }
+  /* Fly-to-cart animation */
+  .flying-img {
+    position: fixed;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    z-index: 2000;
+    border-radius: 10px;
+    pointer-events: none;
+    transition: transform 0.8s cubic-bezier(0.4,0,0.2,1), opacity 0.8s;
+  }
+
+  /* Responsive */
+  @media(max-width: 768px) { .menu-section { grid-template-columns: repeat(2,1fr); } }
+  @media(max-width: 480px) { .menu-section { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 
+<!-- Header -->
 <header>
   <div class="header-container">
     <img src="logo.jpeg" alt="Taste Liberia Logo" class="logo">
@@ -87,43 +169,82 @@ footer a:hover { text-decoration:underline; }
   </nav>
 </header>
 
+<!-- Hero -->
 <section class="hero">
-  <h2>🍲 Our Delicious Menu</h2>
-  <p>Explore the flavors of Liberia — carefully crafted dishes for every taste.</p>
+  <h2>Delicious Liberian Flavors</h2>
+  <p>Every dish tells a story of home, heritage, and heart.</p>
 </section>
 
-<section class="menu-section">
-  <div class="category-tabs">
-    <button class="tab-btn active" data-category="all">All</button>
-    <button class="tab-btn" data-category="entree">Entrees</button>
-    <button class="tab-btn" data-category="soup">Soups</button>
-    <button class="tab-btn" data-category="dessert">Desserts</button>
-    <button class="tab-btn" data-category="drink">Drinks</button>
+<!-- Menu Section -->
+<section class="menu-section" id="menu">
+  <div class="menu-item">
+    <img src="pepper-goat.jpeg" class="menu-img" alt="Pepper Goat">
+    <div class="menu-info">
+      <h3>Pepper Goat – $30</h3>
+      <p>Tender goat meat simmered in a spicy sauce.</p>
+    </div>
+    <input type="number" id="qty-0" value="1" min="1">
+    <button class="btn" onclick="addToCart(0)">Add to Cart</button>
   </div>
-  
-  <div class="menu-grid" id="menu-grid"></div>
+  <div class="menu-item">
+    <img src="jollof.jpeg" class="menu-img" alt="Liberian Veg Jollof Rice">
+    <div class="menu-info">
+      <h3>Liberian Veg Jollof Rice – $17</h3>
+      <p>Vibrant rice with vegetables & spices.</p>
+    </div>
+    <input type="number" id="qty-1" value="1" min="1">
+    <button class="btn" onclick="addToCart(1)">Add to Cart</button>
+  </div>
+  <div class="menu-item">
+    <img src="Bake Fish.jpeg" class="menu-img" alt="Bake Fish Platter with Plantain">
+    <div class="menu-info">
+      <h3>Bake Fish Platter with Plantain – $25</h3>
+      <p>Seasoned fish with golden fried plantains.</p>
+    </div>
+    <input type="number" id="qty-2" value="1" min="1">
+    <button class="btn" onclick="addToCart(2)">Add to Cart</button>
+  </div>
+  <div class="menu-item">
+    <img src="GB.jpeg" class="menu-img" alt="Nimba GB Soup with Fufu">
+    <div class="menu-info">
+      <h3>Nimba GB Soup with Fufu – $1</h3>
+      <p>Traditional soup served with soft fufu.</p>
+    </div>
+    <input type="number" id="qty-3" value="1" min="1">
+    <button class="btn" onclick="addToCart(3)">Add to Cart</button>
+  </div>
+  <div class="menu-item">
+    <img src="palm.jpeg" class="menu-img" alt="Palm Butter with Rice">
+    <div class="menu-info">
+      <h3>Palm Butter with Rice – $25</h3>
+      <p>Creamy palm butter sauce with fluffy rice.</p>
+    </div>
+    <input type="number" id="qty-4" value="1" min="1">
+    <button class="btn" onclick="addToCart(4)">Add to Cart</button>
+  </div>
 </section>
 
+<!-- Notification -->
+<div id="cart-notification"></div>
+
+<!-- Mini Cart -->
 <div id="mini-cart" onclick="scrollToCart()">
   🛒 <span id="mini-cart-count">0</span> items | $<span id="mini-cart-total">0</span>
   <div id="mini-cart-preview"></div>
 </div>
 
+<!-- Order Section -->
 <section class="order-form" id="order-form">
   <h2>Your Cart</h2>
   <table>
     <thead>
-      <tr>
-        <th>Item</th>
-        <th>Qty</th>
-        <th>Price</th>
-        <th>Remove</th>
-      </tr>
+      <tr><th>Item</th><th>Qty</th><th>Price</th><th>Remove</th></tr>
     </thead>
     <tbody id="cart-body"></tbody>
   </table>
   <h4>Total: $<span id="cart-total">0</span></h4>
 
+  <!-- PayPal Form -->
   <form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
     <input type="hidden" name="cmd" value="_cart">
     <input type="hidden" name="upload" value="1">
@@ -139,131 +260,110 @@ footer a:hover { text-decoration:underline; }
   </ul>
 </section>
 
+<!-- Footer -->
 <footer>
   <p>📍 Wilmington, Delaware | 📞 +1 (302) 257-1662 | ✉️ Nellie@231cuisine.com</p>
   <p>Follow us on <a href="https://instagram.com/231cuisine" target="_blank">Instagram</a></p>
   <p>&copy; 2025 231 Cuisine & Catering Services</p>
 </footer>
 
-<div id="dish-modal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeModal()">&times;</span>
-    <img id="modal-img" src="" alt="">
-    <h3 id="modal-name"></h3>
-    <p id="modal-desc"></p>
-    <div class="menu-actions">
-      <input type="number" id="modal-qty" value="1" min="1">
-      <button class="btn" onclick="addModalToCart()">Add to Cart</button>
-    </div>
-  </div>
-</div>
-
 <script>
-const menuItems=[
-  {name:'Pepper Goat', price:30, category:'entree', bestSeller:true},
-  {name:'Liberian Veg Jollof Rice', price:17, category:'entree', bestSeller:false},
-  {name:'Bake Fish Platter', price:25, category:'entree', bestSeller:true},
-  {name:'Nimba GB Soup with Fufu', price:20, category:'soup', bestSeller:false},
-  {name:'Palm Butter with Rice', price:25, category:'entree', bestSeller:false},
-  {name:'Liberian Coconut Rice', price:18, category:'entree', bestSeller:false},
-  {name:'Liberian Ginger Beer', price:5, category:'drink', bestSeller:true},
-  {name:'Chocolate Cake', price:8, category:'dessert', bestSeller:false}
-];
-let cart=[], modalItemIndex=null;
+  const menuItems = [
+    { name: 'Pepper Goat', price: 30 },
+    { name: 'Liberian Veg Jollof Rice', price: 17 },
+    { name: 'Bake Fish Platter with Plantain', price: 25 },
+    { name: 'Nimba GB Soup with Fufu', price: 1 },
+    { name: 'Palm Butter with Rice', price: 25 }
+  ];
 
-function displayMenu(category='all'){
-  const grid=document.getElementById('menu-grid'); grid.innerHTML='';
-  menuItems.forEach((item,i)=>{
-    if(category==='all' || item.category===category){
-      const div=document.createElement('div'); div.className='menu-item';
-      div.innerHTML=`
-        <img src="${item.name.toLowerCase().replace(/\s+/g,'-')}.jpeg" class="menu-img" alt="${item.name}" onclick="openModal(${i})">
-        <div class="menu-info">
-          <h3>${item.name} – $${item.price} ${item.bestSeller?'<span class="badge">🔥 Best Seller</span>':''}</h3>
-          <p>Delicious ${item.name} prepared with love.</p>
-        </div>
-        <div class="menu-actions">
-          <input type="number" id="qty-${i}" value="1" min="1">
-          <button class="btn" onclick="addToCart(${i})">Add</button>
-        </div>`;
-      grid.appendChild(div);
-    }
-  });
-}
-document.querySelectorAll('.tab-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    displayMenu(btn.dataset.category);
-  });
-});
+  let cart = [];
 
-function addToCart(index){
-  const qty=parseInt(document.getElementById(`qty-${index}`).value);
-  const item=menuItems[index];
-  const existing=cart.find(i=>i.name===item.name);
-  if(existing){ existing.qty+=qty; } else{ cart.push({...item, qty}); }
-  updateCart(); updateMiniCart();
-}
+  function addToCart(index) {
+    const qty = parseInt(document.getElementById(`qty-${index}`).value);
+    const item = menuItems[index];
+    const existing = cart.find(i => i.name === item.name);
+    if (existing) { existing.qty += qty; } 
+    else { cart.push({ ...item, qty }); }
 
-function updateCart(){
-  const cartBody=document.getElementById('cart-body'); cartBody.innerHTML=''; let total=0;
-  cart.forEach((item,i)=>{
-    total+=item.price*item.qty;
-    const row=document.createElement('tr');
-    row.innerHTML=`<td>${item.name}</td><td>${item.qty}</td><td>$${item.price*item.qty}</td><td><button onclick="removeItem(${i})">❌</button></td>`;
-    cartBody.appendChild(row);
-  });
-  document.getElementById('cart-total').innerText=total;
-  const paypalItems=document.getElementById('paypal-items'); paypalItems.innerHTML='';
-  cart.forEach((item,i)=>{
-    paypalItems.innerHTML+=`<input type="hidden" name="item_name_${i+1}" value="${item.name}">
-                             <input type="hidden" name="amount_${i+1}" value="${item.price}">
-                             <input type="hidden" name="quantity_${i+1}" value="${item.qty}">`;
-  });
-}
+    updateCart();
+    updateMiniCart();
+    showNotification(item.name);
 
-function removeItem(index){ cart.splice(index,1); updateCart(); updateMiniCart(); }
-function updateMiniCart(){
-  let totalQty=0,totalPrice=0;
-  const preview=document.getElementById('mini-cart-preview'); preview.innerHTML='';
-  cart.forEach(item=>{ totalQty+=item.qty; totalPrice+=item.price*item.qty; });
-  document.getElementById('mini-cart-count').innerText=totalQty;
-  document.getElementById('mini-cart-total').innerText=totalPrice;
-  const lastItems=cart.slice(-3);
-  lastItems.forEach(i=>preview.innerHTML+=`<p>${i.name} x${i.qty}</p>`);
-  if(cart.length>3) preview.innerHTML+=`<p>...and more</p>`;
-}
-function scrollToCart(){ document.getElementById('order-form').scrollIntoView({behavior:'smooth'}); }
+    // Fly-to-cart animation
+    const img = document.querySelectorAll('.menu-img')[index];
+    const clone = img.cloneNode(true);
+    const rect = img.getBoundingClientRect();
+    clone.style.position = 'fixed';
+    clone.style.left = rect.left + 'px';
+    clone.style.top = rect.top + 'px';
+    clone.style.width = rect.width + 'px';
+    clone.style.height = rect.height + 'px';
+    clone.classList.add('flying-img');
+    document.body.appendChild(clone);
 
-function openModal(index){
-  modalItemIndex=index;
-  const item=menuItems[index];
-  document.getElementById('modal-img').src=item.name.toLowerCase().replace(/\s+/g,'-')+'.jpeg';
-  document.getElementById('modal-name').innerText=item.name + ' – $' + item.price;
-  document.getElementById('modal-desc').innerText='Delicious '+item.name+' prepared with love.';
-  document.getElementById('modal-qty').value=1;
-  document.getElementById('dish-modal').style.display='block';
-  document.body.style.filter='blur(2px)'; // background blur
-}
+    const cartRect = document.getElementById('mini-cart').getBoundingClientRect();
+    setTimeout(() => {
+      clone.style.transform = `translate(${cartRect.left - rect.left}px, ${cartRect.top - rect.top}px) scale(0.2)`;
+      clone.style.opacity = '0';
+    }, 10);
+    setTimeout(() => { document.body.removeChild(clone); }, 900);
+  }
 
-function closeModal(){
-  document.getElementById('dish-modal').style.display='none';
-  document.body.style.filter='none';
-}
-window.onclick = function(event){
-  if(event.target == document.getElementById('dish-modal')) closeModal();
-}
+  function updateCart() {
+    const cartBody = document.getElementById('cart-body');
+    cartBody.innerHTML = '';
+    let total = 0;
+    cart.forEach((item, i) => {
+      total += item.price * item.qty;
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${item.name}</td>
+        <td>${item.qty}</td>
+        <td>$${item.price * item.qty}</td>
+        <td><button onclick="removeItem(${i})">❌</button></td>
+      `;
+      cartBody.appendChild(row);
+    });
+    document.getElementById('cart-total').innerText = total;
 
-function addModalToCart(){ 
-  const qty=parseInt(document.getElementById('modal-qty').value);
-  const item=menuItems[modalItemIndex];
-  const existing=cart.find(i=>i.name===item.name);
-  if(existing){ existing.qty+=qty; } else{ cart.push({...item, qty}); }
-  updateCart(); updateMiniCart(); closeModal();
-}
+    const paypalItems = document.getElementById('paypal-items');
+    paypalItems.innerHTML = '';
+    cart.forEach((item, i) => {
+      paypalItems.innerHTML += `
+        <input type="hidden" name="item_name_${i+1}" value="${item.name}">
+        <input type="hidden" name="amount_${i+1}" value="${item.price}">
+        <input type="hidden" name="quantity_${i+1}" value="${item.qty}">
+      `;
+    });
+  }
 
-displayMenu();
+  function removeItem(index) {
+    cart.splice(index, 1);
+    updateCart();
+    updateMiniCart();
+  }
+
+  function showNotification(itemName) {
+    const notif = document.getElementById('cart-notification');
+    notif.innerText = `${itemName} added to cart!`;
+    notif.classList.add('show');
+    setTimeout(() => { notif.classList.remove('show'); }, 1500);
+  }
+
+  function updateMiniCart() {
+    let totalQty = 0, totalPrice = 0;
+    cart.forEach(item => { totalQty += item.qty; totalPrice += item.price * item.qty; });
+    document.getElementById('mini-cart-count').innerText = totalQty;
+    document.getElementById('mini-cart-total').innerText = totalPrice;
+
+    const preview = document.getElementById('mini-cart-preview');
+    preview.innerHTML = '';
+    const lastItems = cart.slice(-3);
+    lastItems.forEach(i => { preview.innerHTML += `<p>${i.name} x${i.qty}</p>`; });
+    if(cart.length > 3) preview.innerHTML += `<p>...and more</p>`;
+  }
+
+  function scrollToCart() { document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' }); }
 </script>
 
 </body>
