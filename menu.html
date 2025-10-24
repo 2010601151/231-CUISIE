@@ -6,113 +6,38 @@
 <title>Menu – Taste Liberia</title>
 <link rel="stylesheet" href="style.css" />
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #fff8f0;
-  }
+  body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff8f0; }
 
   /* Header */
-  header {
-    background: linear-gradient(90deg, #2E6F40, #2E6F40);
-    color: white;
-    padding: 20px;
-    text-align: center;
-    animation: fadeInDown 1s ease-in;
-  }
-  .header-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-  }
-  .logo {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    animation: float 3s ease-in-out infinite;
-  }
+  header { background: #2E6F40; color: white; padding: 20px; text-align: center; }
+  .header-container { display: flex; justify-content: center; align-items: center; gap: 15px; }
+  .logo { width: 70px; height: 70px; border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
   nav a { margin: 0 10px; color: #fff; text-decoration: none; font-weight: bold; }
   nav a:hover { color: #ffd700; }
 
   /* Hero */
-  .hero { text-align: center; padding: 40px 20px; animation: fadeIn 1s ease-in; }
-  .hero h2 { font-size: 2.5rem; margin-bottom: 10px; animation: fadeInUp 1s ease-in; }
-  .hero p { font-size: 1.2rem; animation: fadeInUp 1.3s ease-in; }
+  .hero { text-align: center; padding: 40px 20px; }
+  .hero h2 { font-size: 2.5rem; margin-bottom: 10px; }
+  .hero p { font-size: 1.2rem; }
   .hero .btn { margin: 5px; background: #2E6F40; color: white; padding: 10px 20px; border-radius: 30px; border: none; cursor: pointer; }
   .hero .btn:hover { background: #ffd700; }
 
   /* Menu Section */
-  .menu-section {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    justify-items: center;
-  }
-  .menu-item {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    overflow: hidden;
-    width: 100%;
-    max-width: 250px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    padding-bottom: 10px;
-  }
+  .menu-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 20px; justify-items: center; }
+  .menu-item { background: #fff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; width: 100%; max-width: 250px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; padding-bottom: 10px; }
   .menu-item:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
   .menu-img { width: 100%; height: 180px; object-fit: cover; transition: transform 0.5s ease; }
   .menu-item:hover .menu-img { transform: scale(1.05); }
   input[type="number"] { width: 50px; padding: 4px; border-radius: 4px; border: 1px solid #ccc; margin-top: 5px; }
 
   /* Notification */
-  #cart-notification {
-    position: fixed;
-    top: 20px;
-    right: -300px;
-    background: #000;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
-    z-index: 1000;
-    font-weight: bold;
-    transition: right 0.5s ease-in-out, opacity 0.5s;
-    opacity: 0;
-  }
+  #cart-notification { position: fixed; top: 20px; right: -300px; background: #000; color: white; padding: 12px 20px; border-radius: 8px; z-index: 1000; font-weight: bold; transition: right 0.5s ease-in-out, opacity 0.5s; opacity: 0; }
   #cart-notification.show { right: 20px; opacity: 1; }
 
   /* Mini Cart */
-  #mini-cart {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #ffd700;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 50px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    cursor: pointer;
-    z-index: 1000;
-    font-weight: bold;
-    transition: transform 0.2s, background 0.2s;
-  }
+  #mini-cart { position: fixed; bottom: 20px; right: 20px; background: #ffd700; color: white; padding: 12px 20px; border-radius: 50px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer; z-index: 1000; font-weight: bold; transition: transform 0.2s, background 0.2s; }
   #mini-cart:hover { transform: scale(1.05); background: #ffd700; }
-  #mini-cart-preview {
-    position: absolute;
-    bottom: 60px;
-    right: 0;
-    background: white;
-    color: #333;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    display: none;
-    min-width: 220px;
-    z-index: 1001;
-  }
+  #mini-cart-preview { position: absolute; bottom: 60px; right: 0; background: white; color: #333; padding: 10px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); display: none; min-width: 220px; z-index: 1001; }
   #mini-cart:hover #mini-cart-preview { display: block; }
   #mini-cart-preview p { margin: 5px 0; font-size: 14px; }
 
@@ -129,23 +54,8 @@
   footer a { color: #ffd700; text-decoration: none; }
   footer a:hover { text-decoration: underline; }
 
-  /* Animations */
-  @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-  @keyframes fadeInUp { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
-  @keyframes fadeInDown { from {opacity:0; transform:translateY(-30px);} to {opacity:1; transform:translateY(0);} }
-  @keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);} }
-
   /* Fly-to-cart animation */
-  .flying-img {
-    position: fixed;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    z-index: 2000;
-    border-radius: 10px;
-    pointer-events: none;
-    transition: transform 0.8s cubic-bezier(0.4,0,0.2,1), opacity 0.8s;
-  }
+  .flying-img { position: fixed; width: 150px; height: 150px; object-fit: cover; z-index: 2000; border-radius: 10px; pointer-events: none; transition: transform 0.8s cubic-bezier(0.4,0,0.2,1), opacity 0.8s; }
 
   /* Responsive */
   @media(max-width: 768px) { .menu-section { grid-template-columns: repeat(2,1fr); } }
@@ -163,7 +73,7 @@
   <nav>
     <a href="index.html">Home</a>
     <a href="menu.html">Menu</a>
-    <a href="#order-form">Your Order</a>
+    <a href="#order-form">Order</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
@@ -244,20 +154,7 @@
   </table>
   <h4>Total: $<span id="cart-total">0</span></h4>
 
-  <!-- PayPal Form -->
-  <form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-    <input type="hidden" name="cmd" value="_cart">
-    <input type="hidden" name="upload" value="1">
-    <input type="hidden" name="business" value="nellie@231cuisine.com">
-    <div id="paypal-items"></div>
-    <input type="submit" value="Pay with PayPal" class="btn">
-  </form>
-
-  <h3>Other Payment Options</h3>
-  <ul>
-    <li>💵 Cash App: <b>$nharper2929</b></li>
-    <li>🏦 Zelle: <b>3022571662</b></li>
-  </ul>
+  <button class="btn" onclick="checkout()">Pay with Card</button>
 </section>
 
 <!-- Footer -->
@@ -268,102 +165,91 @@
 </footer>
 
 <script>
-  const menuItems = [
-    { name: 'Pepper Goat', price: 30 },
-    { name: 'Liberian Veg Jollof Rice', price: 17 },
-    { name: 'Bake Fish Platter with Plantain', price: 25 },
-    { name: 'Nimba GB Soup with Fufu', price: 1 },
-    { name: 'Palm Butter with Rice', price: 25 }
-  ];
+const menuItems = [
+  { name: 'Pepper Goat', price: 30 },
+  { name: 'Liberian Veg Jollof Rice', price: 17 },
+  { name: 'Bake Fish Platter with Plantain', price: 25 },
+  { name: 'Nimba GB Soup with Fufu', price: 1 },
+  { name: 'Palm Butter with Rice', price: 25 }
+];
 
-  let cart = [];
+let cart = [];
 
-  function addToCart(index) {
-    const qty = parseInt(document.getElementById(`qty-${index}`).value);
-    const item = menuItems[index];
-    const existing = cart.find(i => i.name === item.name);
-    if (existing) { existing.qty += qty; } 
-    else { cart.push({ ...item, qty }); }
+function addToCart(index) {
+  const qty = parseInt(document.getElementById(`qty-${index}`).value);
+  const item = menuItems[index];
+  const existing = cart.find(i => i.name === item.name);
+  if (existing) { existing.qty += qty; } 
+  else { cart.push({ ...item, qty }); }
+  updateCart();
+  updateMiniCart();
+  showNotification(item.name);
+  // Fly-to-cart animation
+  const img = document.querySelectorAll('.menu-img')[index];
+  const clone = img.cloneNode(true);
+  const rect = img.getBoundingClientRect();
+  clone.style.position = 'fixed';
+  clone.style.left = rect.left + 'px';
+  clone.style.top = rect.top + 'px';
+  clone.style.width = rect.width + 'px';
+  clone.style.height = rect.height + 'px';
+  clone.classList.add('flying-img');
+  document.body.appendChild(clone);
+  const cartRect = document.getElementById('mini-cart').getBoundingClientRect();
+  setTimeout(() => {
+    clone.style.transform = `translate(${cartRect.left - rect.left}px, ${cartRect.top - rect.top}px) scale(0.2)`;
+    clone.style.opacity = '0';
+  }, 10);
+  setTimeout(() => { document.body.removeChild(clone); }, 900);
+}
 
-    updateCart();
-    updateMiniCart();
-    showNotification(item.name);
+function updateCart() {
+  const cartBody = document.getElementById('cart-body');
+  cartBody.innerHTML = '';
+  let total = 0;
+  cart.forEach((item, i) => {
+    total += item.price * item.qty;
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${item.name}</td>
+      <td>${item.qty}</td>
+      <td>$${item.price * item.qty}</td>
+      <td><button onclick="removeItem(${i})">❌</button></td>
+    `;
+    cartBody.appendChild(row);
+  });
+  document.getElementById('cart-total').innerText = total;
+}
 
-    // Fly-to-cart animation
-    const img = document.querySelectorAll('.menu-img')[index];
-    const clone = img.cloneNode(true);
-    const rect = img.getBoundingClientRect();
-    clone.style.position = 'fixed';
-    clone.style.left = rect.left + 'px';
-    clone.style.top = rect.top + 'px';
-    clone.style.width = rect.width + 'px';
-    clone.style.height = rect.height + 'px';
-    clone.classList.add('flying-img');
-    document.body.appendChild(clone);
+function removeItem(index) { cart.splice(index, 1); updateCart(); updateMiniCart(); }
+function showNotification(itemName) { const notif = document.getElementById('cart-notification'); notif.innerText = `${itemName} added to cart!`; notif.classList.add('show'); setTimeout(() => { notif.classList.remove('show'); }, 1500); }
+function updateMiniCart() {
+  let totalQty = 0, totalPrice = 0;
+  cart.forEach(item => { totalQty += item.qty; totalPrice += item.price * item.qty; });
+  document.getElementById('mini-cart-count').innerText = totalQty;
+  document.getElementById('mini-cart-total').innerText = totalPrice;
+  const preview = document.getElementById('mini-cart-preview');
+  preview.innerHTML = '';
+  const lastItems = cart.slice(-3);
+  lastItems.forEach(i => { preview.innerHTML += `<p>${i.name} x${i.qty}</p>`; });
+  if(cart.length > 3) preview.innerHTML += `<p>...and more</p>`;
+}
 
-    const cartRect = document.getElementById('mini-cart').getBoundingClientRect();
-    setTimeout(() => {
-      clone.style.transform = `translate(${cartRect.left - rect.left}px, ${cartRect.top - rect.top}px) scale(0.2)`;
-      clone.style.opacity = '0';
-    }, 10);
-    setTimeout(() => { document.body.removeChild(clone); }, 900);
-  }
+function scrollToCart() { document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' }); }
 
-  function updateCart() {
-    const cartBody = document.getElementById('cart-body');
-    cartBody.innerHTML = '';
-    let total = 0;
-    cart.forEach((item, i) => {
-      total += item.price * item.qty;
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>${item.name}</td>
-        <td>${item.qty}</td>
-        <td>$${item.price * item.qty}</td>
-        <td><button onclick="removeItem(${i})">❌</button></td>
-      `;
-      cartBody.appendChild(row);
+// Stripe Checkout
+async function checkout() {
+  if (cart.length === 0) { alert("Cart is empty!"); return; }
+  try {
+    const res = await fetch("https://taste-liberia-backend.onrender.com/create-checkout-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ cart })
     });
-    document.getElementById('cart-total').innerText = total;
-
-    const paypalItems = document.getElementById('paypal-items');
-    paypalItems.innerHTML = '';
-    cart.forEach((item, i) => {
-      paypalItems.innerHTML += `
-        <input type="hidden" name="item_name_${i+1}" value="${item.name}">
-        <input type="hidden" name="amount_${i+1}" value="${item.price}">
-        <input type="hidden" name="quantity_${i+1}" value="${item.qty}">
-      `;
-    });
-  }
-
-  function removeItem(index) {
-    cart.splice(index, 1);
-    updateCart();
-    updateMiniCart();
-  }
-
-  function showNotification(itemName) {
-    const notif = document.getElementById('cart-notification');
-    notif.innerText = `${itemName} added to cart!`;
-    notif.classList.add('show');
-    setTimeout(() => { notif.classList.remove('show'); }, 1500);
-  }
-
-  function updateMiniCart() {
-    let totalQty = 0, totalPrice = 0;
-    cart.forEach(item => { totalQty += item.qty; totalPrice += item.price * item.qty; });
-    document.getElementById('mini-cart-count').innerText = totalQty;
-    document.getElementById('mini-cart-total').innerText = totalPrice;
-
-    const preview = document.getElementById('mini-cart-preview');
-    preview.innerHTML = '';
-    const lastItems = cart.slice(-3);
-    lastItems.forEach(i => { preview.innerHTML += `<p>${i.name} x${i.qty}</p>`; });
-    if(cart.length > 3) preview.innerHTML += `<p>...and more</p>`;
-  }
-
-  function scrollToCart() { document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' }); }
+    const data = await res.json();
+    window.open(data.url, "_blank");
+  } catch (err) { alert("Payment failed. Please try again."); console.error(err); }
+}
 </script>
 
 </body>
