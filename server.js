@@ -18,7 +18,7 @@ app.post("/create-checkout-session", async (req, res) => {
       price_data: {
         currency: "usd",
         product_data: { name: item.name },
-        unit_amount: item.price * 100, // Stripe expects cents
+        unit_amount: item.price * 100,
       },
       quantity: item.qty,
     }));
@@ -27,8 +27,8 @@ app.post("/create-checkout-session", async (req, res) => {
       payment_method_types: ["card"],
       line_items,
       mode: "payment",
-      success_url: "https://your-username.github.io/taste_liberia_cpanel/success.html",
-      cancel_url: "https://your-username.github.io/taste_liberia_cpanel/menu.html",
+      success_url: "https://your-github-username.github.io/taste_liberia_cpanel/success.html",
+      cancel_url: "https://your-github-username.github.io/taste_liberia_cpanel/menu.html",
     });
 
     res.json({ url: session.url });
@@ -37,4 +37,4 @@ app.post("/create-checkout-session", async (req, res) => {
   }
 });
 
-app.listen(4242, () => console.log("Server running on port 4242"));
+app.listen(process.env.PORT || 4242, () => console.log("Server running"));
