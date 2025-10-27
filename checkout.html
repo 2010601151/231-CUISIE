@@ -5,6 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Checkout – Taste Liberia</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body { font-family: 'Poppins', sans-serif; background-color: #fffaf5; color: #333; margin: 0; padding: 0; }
+    header { background-color: #2E6F40; color: #fff; padding: 15px 20px; display: flex; flex-direction: column; align-items: center; }
+    .header-container { display: flex; align-items: center; gap: 15px; }
+    .logo { width: 60px; border-radius: 50%; }
+    nav { margin-top: 10px; }
+    nav a { margin: 0 10px; color: #fff; font-weight: 600; text-decoration: none; }
+    nav a:hover { color: #ffe4b3; }
+
+    section { max-width: 900px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 15px; box-shadow: 0 6px 18px rgba(0,0,0,0.1); }
+    h2 { text-align: center; color: #2E6F40; margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    th, td { padding: 12px; border-bottom: 1px solid #ddd; text-align: center; }
+    th { background-color: #ffe8d6; color: #2E6F40; }
+    button.remove-btn { background-color: #e60000; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+    button.remove-btn:hover { background-color: #ff3300; }
+
+    .btn { display: inline-block; padding: 12px 25px; background-color: #2E6F40; color: #fff; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; text-decoration: none; transition: 0.3s; }
+    .btn:hover { background-color: #ff9933; }
+
+    ul { list-style: none; padding: 0; }
+    li { margin-bottom: 10px; font-weight: 500; }
+
+    footer { background-color: #2E6F40; color: #fff; text-align: center; padding: 30px 20px; }
+    footer a { color: #ffe4b3; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
 
@@ -26,7 +53,7 @@
   <!-- Cart Section -->
   <section class="order-form" id="order-form">
     <h2>Your Cart</h2>
-    <table style="width:100%; text-align:left;">
+    <table>
       <thead>
         <tr>
           <th>Item</th>
@@ -39,14 +66,7 @@
     </table>
     <h4>Total: $<span id="cart-total">0</span></h4>
 
-    <!-- PayPal Checkout -->
-    <form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-      <input type="hidden" name="cmd" value="_cart">
-      <input type="hidden" name="upload" value="1">
-      <input type="hidden" name="business" value="nellie@231cuisine.com">
-      <div id="paypal-items"></div>
-      <input type="submit" value="Pay with PayPal" class="btn">
-    </form>
+    <button id="checkout-btn" class="btn">Pay with Stripe</button>
 
     <h3>Other Payment Options</h3>
     <ul>
@@ -56,13 +76,67 @@
     <p>After paying via Cash App or Zelle, send a screenshot or confirmation to <b>nellie@231cuisine.com</b></p>
   </section>
 
-  <!-- Footer -->
   <footer>
     <p>📍 Wilmington, Delaware | 📞 +1 (302) 257-1662 | ✉️ Nellie@231cuisine.com</p>
     <p>Follow us on <a href="https://instagram.com/231cuisine" target="_blank">Instagram</a></p>
     <p>&copy; 2025 231 Cuisine & Catering Services</p>
   </footer>
 
-  <script src="app.js"></script>
+  <!-- Stripe.js -->
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    // Cart stored in localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartBody = document.getElementById('cart-body');
+    const cartTotal = document.getElementById('cart-total');
+    const checkoutBtn = document.getElementById('checkout-btn');
+
+    function renderCart() {
+      cartBody.innerHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price * item.quantity;
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item.name}</td>
+          <td>${item.quantity}</td>
+          <td>$${(item.price * item.quantity).toFixed(2)}</td>
+          <td><button class="remove-btn" data-index="${index}">X</button></td>
+        `;
+        cartBody.appendChild(row);
+      });
+
+      cartTotal.textContent = total.toFixed(2);
+
+      // Remove button
+      document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          cart.splice(btn.dataset.index, 1);
+          localStorage.setItem('cart', JSON.stringify(cart));
+          renderCart();
+        });
+      });
+    }
+
+    renderCart();
+
+    // Stripe Checkout
+    checkoutBtn.addEventListener('click', async () => {
+      if(cart.length === 0) return alert('Your cart is empty.');
+
+      const response = await fetch('/create-checkout-session', { 
+        method: 'POST', 
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: cart })
+      });
+
+      const session = await response.json();
+      const stripe = Stripe('pk_live_51SLPuYIRB5h9kKSgqV6JOB9LWX6CcoSql3aNbFIzpabBCBBU2pzct7QLi7EaBZ3HNhzdgiEtxpG3kqPHD06kDXfQ00S6lRKCOq'); // Replace with your Stripe Publishable Key
+      stripe.redirectToCheckout({ sessionId: session.id });
+    });
+  </script>
+
 </body>
 </html>
