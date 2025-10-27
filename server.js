@@ -1,40 +1,40 @@
+// server.js
 const express = require("express");
-const cors = require("cors");
 const bodyParser = require("body-parser");
-const Stripe = require("stripe");
+const cors = require("cors");
+const stripe = require("stripe")("sk_live_your_client_secret_key_here"); // replace this with SECRET KEY
+
 const app = express();
-
-// Replace with your Stripe Secret Key
-const stripe = Stripe("YOUR_STRIPE_SECRET_KEY");
-
-app.use(cors());
 app.use(bodyParser.json());
+app.use(cors());
 
 app.post("/create-checkout-session", async (req, res) => {
+  const { itemName, itemPrice } = req.body;
+
   try {
-    const { cart } = req.body;
-
-    const line_items = cart.map(item => ({
-      price_data: {
-        currency: "usd",
-        product_data: { name: item.name },
-        unit_amount: item.price * 100,
-      },
-      quantity: item.qty,
-    }));
-
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
-      line_items,
+      line_items: [
+        {
+          price_data: {
+            currency: "usd",
+            product_data: {
+              name: itemName,
+            },
+            unit_amount: parseInt(itemPrice),
+          },
+          quantity: 1,
+        },
+      ],
       mode: "payment",
-      success_url: "https://your-github-username.github.io/taste_liberia_cpanel/success.html",
-      cancel_url: "https://your-github-username.github.io/taste_liberia_cpanel/menu.html",
+      success_url: "https://yourwebsite.com/success.html",
+      cancel_url: "https://yourwebsite.com/cancel.html",
     });
 
-    res.json({ url: session.url });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.json({ id: session.id });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
 
-app.listen(process.env.PORT || 4242, () => console.log("Server running"));
+app.listen(3000, () => console.log("✅ Server running on http://localhost:3000"));
