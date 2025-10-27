@@ -1,256 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Menu – Taste Liberia</title>
-<link rel="stylesheet" href="style.css" />
-<style>
-  body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff8f0; }
-
-  /* Header */
-  header { background: #2E6F40; color: white; padding: 20px; text-align: center; }
-  .header-container { display: flex; justify-content: center; align-items: center; gap: 15px; }
-  .logo { width: 70px; height: 70px; border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
-  nav a { margin: 0 10px; color: #fff; text-decoration: none; font-weight: bold; }
-  nav a:hover { color: #ffd700; }
-
-  /* Hero */
-  .hero { text-align: center; padding: 40px 20px; }
-  .hero h2 { font-size: 2.5rem; margin-bottom: 10px; }
-  .hero p { font-size: 1.2rem; }
-  .hero .btn { margin: 5px; background: #2E6F40; color: white; padding: 10px 20px; border-radius: 30px; border: none; cursor: pointer; }
-  .hero .btn:hover { background: #ffd700; }
-
-  /* Menu Section */
-  .menu-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 20px; justify-items: center; }
-  .menu-item { background: #fff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; width: 100%; max-width: 250px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; padding-bottom: 10px; }
-  .menu-item:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-  .menu-img { width: 100%; height: 180px; object-fit: cover; transition: transform 0.5s ease; }
-  .menu-item:hover .menu-img { transform: scale(1.05); }
-  input[type="number"] { width: 50px; padding: 4px; border-radius: 4px; border: 1px solid #ccc; margin-top: 5px; }
-
-  /* Notification */
-  #cart-notification { position: fixed; top: 20px; right: -300px; background: #000; color: white; padding: 12px 20px; border-radius: 8px; z-index: 1000; font-weight: bold; transition: right 0.5s ease-in-out, opacity 0.5s; opacity: 0; }
-  #cart-notification.show { right: 20px; opacity: 1; }
-
-  /* Mini Cart */
-  #mini-cart { position: fixed; bottom: 20px; right: 20px; background: #ffd700; color: white; padding: 12px 20px; border-radius: 50px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer; z-index: 1000; font-weight: bold; transition: transform 0.2s, background 0.2s; }
-  #mini-cart:hover { transform: scale(1.05); background: #ffd700; }
-  #mini-cart-preview { position: absolute; bottom: 60px; right: 0; background: white; color: #333; padding: 10px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); display: none; min-width: 220px; z-index: 1001; }
-  #mini-cart:hover #mini-cart-preview { display: block; }
-  #mini-cart-preview p { margin: 5px 0; font-size: 14px; }
-
-  /* Cart Table */
-  table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-  table th, table td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
-  table th { background: #000; color: #fff; }
-
-  .btn { background: #2E6F40; color: #fff; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; transition: transform 0.2s, background 0.2s; }
-  .btn:hover { background: #ffd700; transform: scale(1.05); }
-
-  /* Footer */
-  footer { background: #2E6F40; color: white; text-align: center; padding: 25px; font-size: 0.9em; }
-  footer a { color: #ffd700; text-decoration: none; }
-  footer a:hover { text-decoration: underline; }
-
-  /* Fly-to-cart animation */
-  .flying-img { position: fixed; width: 150px; height: 150px; object-fit: cover; z-index: 2000; border-radius: 10px; pointer-events: none; transition: transform 0.8s cubic-bezier(0.4,0,0.2,1), opacity 0.8s; }
-
-  /* Responsive */
-  @media(max-width: 768px) { .menu-section { grid-template-columns: repeat(2,1fr); } }
-  @media(max-width: 480px) { .menu-section { grid-template-columns: 1fr; } }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taste Liberia Menu</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
+  <header>
+    <h1>Taste Liberia</h1>
+    <p>Authentic Liberian Cuisine</p>
+  </header>
 
-<!-- Header -->
-<header>
-  <div class="header-container">
-    <img src="logo.jpeg" alt="Taste Liberia Logo" class="logo">
-    <h1>🇱🇷 Taste Liberia</h1>
-  </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="menu.html">Menu</a>
-    <a href="#order-form">Order</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+  <main>
+    <section class="menu">
+      <h2>Our Menu</h2>
+      <div class="menu-item">
+        <h3>Jollof Rice</h3>
+        <p>$10</p>
+        <button class="pay-button" data-item="Jollof Rice" data-price="1000">Pay with Card</button>
+      </div>
+      <div class="menu-item">
+        <h3>Cassava Leaf</h3>
+        <p>$12</p>
+        <button class="pay-button" data-item="Cassava Leaf" data-price="1200">Pay with Card</button>
+      </div>
+      <div class="menu-item">
+        <h3>Fufu & Soup</h3>
+        <p>$15</p>
+        <button class="pay-button" data-item="Fufu & Soup" data-price="1500">Pay with Card</button>
+      </div>
+    </section>
+  </main>
 
-<!-- Hero -->
-<section class="hero">
-  <h2>Delicious Liberian Flavors</h2>
-  <p>Every dish tells a story of home, heritage, and heart.</p>
-</section>
+  <script>
+    const stripe = Stripe("pk_live_51SLPuYIRB5h9kKSgqV6JOB9LWX6CcoSql3aNbFIzpabBCBBU2pzct7QLi7EaBZ3HNhzdgiEtxpG3kqPHD06kDXfQ00S6lRKCOq");
 
-<!-- Menu Section -->
-<section class="menu-section" id="menu">
-  <div class="menu-item">
-    <img src="pepper-goat.jpeg" class="menu-img" alt="Pepper Goat">
-    <div class="menu-info">
-      <h3>Pepper Goat – $30</h3>
-      <p>Tender goat meat simmered in a spicy sauce.</p>
-    </div>
-    <input type="number" id="qty-0" value="1" min="1">
-    <button class="btn" onclick="addToCart(0)">Add to Cart</button>
-  </div>
-  <div class="menu-item">
-    <img src="jollof.jpeg" class="menu-img" alt="Liberian Veg Jollof Rice">
-    <div class="menu-info">
-      <h3>Liberian Veg Jollof Rice – $17</h3>
-      <p>Vibrant rice with vegetables & spices.</p>
-    </div>
-    <input type="number" id="qty-1" value="1" min="1">
-    <button class="btn" onclick="addToCart(1)">Add to Cart</button>
-  </div>
-  <div class="menu-item">
-    <img src="Bake Fish.jpeg" class="menu-img" alt="Bake Fish Platter with Plantain">
-    <div class="menu-info">
-      <h3>Bake Fish Platter with Plantain – $25</h3>
-      <p>Seasoned fish with golden fried plantains.</p>
-    </div>
-    <input type="number" id="qty-2" value="1" min="1">
-    <button class="btn" onclick="addToCart(2)">Add to Cart</button>
-  </div>
-  <div class="menu-item">
-    <img src="GB.jpeg" class="menu-img" alt="Nimba GB Soup with Fufu">
-    <div class="menu-info">
-      <h3>Nimba GB Soup with Fufu – $1</h3>
-      <p>Traditional soup served with soft fufu.</p>
-    </div>
-    <input type="number" id="qty-3" value="1" min="1">
-    <button class="btn" onclick="addToCart(3)">Add to Cart</button>
-  </div>
-  <div class="menu-item">
-    <img src="palm.jpeg" class="menu-img" alt="Palm Butter with Rice">
-    <div class="menu-info">
-      <h3>Palm Butter with Rice – $25</h3>
-      <p>Creamy palm butter sauce with fluffy rice.</p>
-    </div>
-    <input type="number" id="qty-4" value="1" min="1">
-    <button class="btn" onclick="addToCart(4)">Add to Cart</button>
-  </div>
-</section>
+    document.querySelectorAll(".pay-button").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const itemName = button.getAttribute("data-item");
+        const itemPrice = button.getAttribute("data-price");
 
-<!-- Notification -->
-<div id="cart-notification"></div>
+        const response = await fetch("http://localhost:3000/create-checkout-session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ itemName, itemPrice }),
+        });
 
-<!-- Mini Cart -->
-<div id="mini-cart" onclick="scrollToCart()">
-  🛒 <span id="mini-cart-count">0</span> items | $<span id="mini-cart-total">0</span>
-  <div id="mini-cart-preview"></div>
-</div>
-
-<!-- Order Section -->
-<section class="order-form" id="order-form">
-  <h2>Your Cart</h2>
-  <table>
-    <thead>
-      <tr><th>Item</th><th>Qty</th><th>Price</th><th>Remove</th></tr>
-    </thead>
-    <tbody id="cart-body"></tbody>
-  </table>
-  <h4>Total: $<span id="cart-total">0</span></h4>
-
-  <button class="btn" onclick="checkout()">Pay with Card</button>
-</section>
-
-<!-- Footer -->
-<footer>
-  <p>📍 Wilmington, Delaware | 📞 +1 (302) 257-1662 | ✉️ Nellie@231cuisine.com</p>
-  <p>Follow us on <a href="https://instagram.com/231cuisine" target="_blank">Instagram</a></p>
-  <p>&copy; 2025 231 Cuisine & Catering Services</p>
-</footer>
-
-<script>
-const menuItems = [
-  { name: 'Pepper Goat', price: 30 },
-  { name: 'Liberian Veg Jollof Rice', price: 17 },
-  { name: 'Bake Fish Platter with Plantain', price: 25 },
-  { name: 'Nimba GB Soup with Fufu', price: 1 },
-  { name: 'Palm Butter with Rice', price: 25 }
-];
-
-let cart = [];
-
-function addToCart(index) {
-  const qty = parseInt(document.getElementById(`qty-${index}`).value);
-  const item = menuItems[index];
-  const existing = cart.find(i => i.name === item.name);
-  if (existing) { existing.qty += qty; } 
-  else { cart.push({ ...item, qty }); }
-  updateCart();
-  updateMiniCart();
-  showNotification(item.name);
-  // Fly-to-cart animation
-  const img = document.querySelectorAll('.menu-img')[index];
-  const clone = img.cloneNode(true);
-  const rect = img.getBoundingClientRect();
-  clone.style.position = 'fixed';
-  clone.style.left = rect.left + 'px';
-  clone.style.top = rect.top + 'px';
-  clone.style.width = rect.width + 'px';
-  clone.style.height = rect.height + 'px';
-  clone.classList.add('flying-img');
-  document.body.appendChild(clone);
-  const cartRect = document.getElementById('mini-cart').getBoundingClientRect();
-  setTimeout(() => {
-    clone.style.transform = `translate(${cartRect.left - rect.left}px, ${cartRect.top - rect.top}px) scale(0.2)`;
-    clone.style.opacity = '0';
-  }, 10);
-  setTimeout(() => { document.body.removeChild(clone); }, 900);
-}
-
-function updateCart() {
-  const cartBody = document.getElementById('cart-body');
-  cartBody.innerHTML = '';
-  let total = 0;
-  cart.forEach((item, i) => {
-    total += item.price * item.qty;
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${item.name}</td>
-      <td>${item.qty}</td>
-      <td>$${item.price * item.qty}</td>
-      <td><button onclick="removeItem(${i})">❌</button></td>
-    `;
-    cartBody.appendChild(row);
-  });
-  document.getElementById('cart-total').innerText = total;
-}
-
-function removeItem(index) { cart.splice(index, 1); updateCart(); updateMiniCart(); }
-function showNotification(itemName) { const notif = document.getElementById('cart-notification'); notif.innerText = `${itemName} added to cart!`; notif.classList.add('show'); setTimeout(() => { notif.classList.remove('show'); }, 1500); }
-function updateMiniCart() {
-  let totalQty = 0, totalPrice = 0;
-  cart.forEach(item => { totalQty += item.qty; totalPrice += item.price * item.qty; });
-  document.getElementById('mini-cart-count').innerText = totalQty;
-  document.getElementById('mini-cart-total').innerText = totalPrice;
-  const preview = document.getElementById('mini-cart-preview');
-  preview.innerHTML = '';
-  const lastItems = cart.slice(-3);
-  lastItems.forEach(i => { preview.innerHTML += `<p>${i.name} x${i.qty}</p>`; });
-  if(cart.length > 3) preview.innerHTML += `<p>...and more</p>`;
-}
-
-function scrollToCart() { document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' }); }
-
-// Stripe Checkout
-async function checkout() {
-  if (cart.length === 0) { alert("Cart is empty!"); return; }
-  try {
-    const res = await fetch("https://taste-liberia-backend.onrender.com/create-checkout-session", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ cart })
+        const session = await response.json();
+        await stripe.redirectToCheckout({ sessionId: session.id });
+      });
     });
-    const data = await res.json();
-    window.open(data.url, "_blank");
-  } catch (err) { alert("Payment failed. Please try again."); console.error(err); }
-}
-</script>
-
+  </script>
 </body>
 </html>
