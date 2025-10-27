@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Menu – Taste Liberia</title>
+<title>Taste Liberia – Home</title>
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,177 +12,178 @@
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 <style>
-  /* ===== Global Styles ===== */
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #fffaf5;
-    color: #333;
-    overflow-x: hidden;
-  }
-  a { text-decoration: none; color: inherit; }
-  img { display: block; width: 100%; height: auto; }
+/* ===== Global Styles ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fffaf5;
+  color: #333;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+img { display: block; width: 100%; height: auto; }
 
-  /* ===== Header ===== */
-  header {
-    background-color: #2E6F40;
-    color: #fff;
-    padding: 15px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  }
-  .header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .logo { width: 60px; border-radius: 50%; }
-  nav a {
-    margin: 0 15px;
-    font-weight: 600;
-    transition: color 0.3s, transform 0.3s;
-  }
-  nav a:hover { color: #ffe4b3; transform: scale(1.05); }
+/* ===== Header ===== */
+header {
+  background-color: #2E6F40;
+  color: #fff;
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo { width: 60px; border-radius: 50%; }
+nav a {
+  margin: 0 15px;
+  font-weight: 600;
+  transition: color 0.3s, transform 0.3s;
+}
+nav a:hover { color: #ffe4b3; transform: scale(1.05); }
 
-  /* ===== Hero ===== */
-  .hero {
-    text-align: center;
-    padding: 80px 20px 60px;
-    background: linear-gradient(135deg, #fffaf5, #ffe8d6);
-  }
-  .hero h1 {
-    font-size: 3rem;
-    color: #2E6F40;
-    margin-bottom: 15px;
-  }
-  .hero p { font-size: 1.3rem; color: #555; max-width: 700px; margin: 0 auto; }
+/* ===== Hero ===== */
+.hero {
+  text-align: center;
+  padding: 80px 20px 60px;
+  background: linear-gradient(135deg, #fffaf5, #ffe8d6);
+}
+.hero h1 {
+  font-size: 3rem;
+  color: #2E6F40;
+  margin-bottom: 15px;
+}
+.hero p { font-size: 1.3rem; color: #555; max-width: 700px; margin: 0 auto; }
 
-  /* ===== Menu Section ===== */
-  .menu-section {
-    padding: 60px 20px;
-    text-align: center;
-  }
-  .menu-section h2 {
-    font-size: 2.8rem;
-    color: #2E6F40;
-    margin-bottom: 50px;
-  }
-  .menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .menu-item {
-    background: #fff;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .menu-item:hover { transform: translateY(-8px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-  .menu-item img { height: 220px; object-fit: cover; transition: transform 0.3s; }
-  .menu-item:hover img { transform: scale(1.05); }
+/* ===== Menu Section ===== */
+.menu-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+.menu-section h2 {
+  font-size: 2.8rem;
+  color: #2E6F40;
+  margin-bottom: 50px;
+}
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.menu-item {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.menu-item:hover { transform: translateY(-8px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+.menu-item img { height: 220px; object-fit: cover; transition: transform 0.3s; }
+.menu-item:hover img { transform: scale(1.05); }
 
-  .menu-info { padding: 20px; }
-  .menu-info h3 {
-    font-size: 1.4rem;
-    color: #2E6F40;
-    margin-bottom: 10px;
-  }
-  .menu-info p {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #ff9933;
-  }
-  .order-btn {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 12px 25px;
-    background-color: #2E6F40;
-    color: #fff;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: all 0.3s;
-    cursor: pointer;
-  }
-  .order-btn:hover { background-color: #ff9933; transform: scale(1.05); }
+.menu-info { padding: 20px; }
+.menu-info h3 {
+  font-size: 1.4rem;
+  color: #2E6F40;
+  margin-bottom: 10px;
+}
+.menu-info p {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ff9933;
+}
+.order-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 25px;
+  background-color: #2E6F40;
+  color: #fff;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.order-btn:hover { background-color: #ff9933; transform: scale(1.05); }
 
-  /* ===== Floating Cart ===== */
-  .cart-wrapper {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    z-index: 1000;
-  }
-  .view-cart-btn {
-    background-color: #ff9933;
-    color: #fff;
-    padding: 15px 30px;
-    border-radius: 50px;
-    font-weight: 700;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-    display: inline-block;
-    position: relative;
-    animation: pulse 2s infinite, bounce 4s infinite;
-    transition: all 0.3s;
-  }
-  .view-cart-btn:hover { background-color: #2E6F40; transform: scale(1.05); }
-  .cart-count {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background: #e60000;
-    color: #fff;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9rem;
-    font-weight: bold;
-    box-shadow: 0 0 8px rgba(0,0,0,0.3);
-  }
-  @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(255,153,51,0.6); }
-    70% { box-shadow: 0 0 0 20px rgba(255,153,51,0); }
-    100% { box-shadow: 0 0 0 0 rgba(255,153,51,0); }
-  }
-  @keyframes bounce {
-    0%,20%,50%,80%,100% { transform: translateY(0); }
-    40% { transform: translateY(-8px); }
-    60% { transform: translateY(-4px); }
-  }
+/* ===== Floating Cart ===== */
+.cart-wrapper {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 1000;
+}
+.view-cart-btn {
+  background-color: #ff9933;
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+  display: inline-block;
+  position: relative;
+  animation: pulse 2s infinite, bounce 4s infinite;
+  transition: all 0.3s;
+}
+.view-cart-btn:hover { background-color: #2E6F40; transform: scale(1.05); }
+.cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #e60000;
+  color: #fff;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,153,51,0.6); }
+  70% { box-shadow: 0 0 0 20px rgba(255,153,51,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,153,51,0); }
+}
+@keyframes bounce {
+  0%,20%,50%,80%,100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
+}
 
-  /* ===== Footer ===== */
-  footer {
-    background-color: #2E6F40;
-    color: #fff;
-    text-align: center;
-    padding: 50px 20px;
-    font-size: 0.95rem;
-  }
-  footer a { color: #ffe4b3; transition: color 0.3s; }
-  footer a:hover { text-decoration: underline; }
+/* ===== Footer ===== */
+footer {
+  background-color: #2E6F40;
+  color: #fff;
+  text-align: center;
+  padding: 50px 20px;
+  font-size: 0.95rem;
+}
+footer a { color: #ffe4b3; transition: color 0.3s; }
+footer a:hover { text-decoration: underline; }
 
-  /* ===== View Full Menu Button ===== */
-  .order-now-btn {
-    display: inline-block;
-    margin: 50px auto 0;
-    padding: 15px 35px;
-    background-color: #2E6F40;
-    color: #fff;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: all 0.3s;
-  }
-  .order-now-btn:hover { background-color: #ff9933; transform: scale(1.05); }
+/* ===== View Full Menu Button ===== */
+.order-now-btn {
+  display: inline-block;
+  margin: 50px auto 0;
+  padding: 15px 35px;
+  background-color: #2E6F40;
+  color: #fff;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.order-now-btn:hover { background-color: #ff9933; transform: scale(1.05); }
+
 </style>
 </head>
 <body>
@@ -194,6 +195,7 @@
     <nav>
       <a href="index.html">Home</a>
       <a href="menu.html">Menu</a>
+      <a href="checkout.html">Order</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -216,7 +218,7 @@
       <div class="menu-info">
         <h3>Pepper Goat</h3>
         <p>$30</p>
-
+        <button class="order-btn" data-name="Pepper Goat" data-price="30">Add to Order</button>
       </div>
     </div>
 
@@ -225,7 +227,7 @@
       <div class="menu-info">
         <h3>Liberian Veg Jollof Rice</h3>
         <p>$17</p>
-       
+        <button class="order-btn" data-name="Liberian Veg Jollof Rice" data-price="17">Add to Order</button>
       </div>
     </div>
 
@@ -234,7 +236,7 @@
       <div class="menu-info">
         <h3>Bake Fish Platter</h3>
         <p>$25</p>
-
+        <button class="order-btn" data-name="Bake Fish Platter" data-price="25">Add to Order</button>
       </div>
     </div>
 
@@ -243,7 +245,7 @@
       <div class="menu-info">
         <h3>Nimba GB Soup</h3>
         <p>$30</p>
-     
+        <button class="order-btn" data-name="Nimba GB Soup" data-price="30">Add to Order</button>
       </div>
     </div>
 
@@ -252,7 +254,7 @@
       <div class="menu-info">
         <h3>Palm Butter with Rice</h3>
         <p>$25</p>
-     
+        <button class="order-btn" data-name="Palm Butter with Rice" data-price="25">Add to Order</button>
       </div>
     </div>
 
@@ -260,6 +262,10 @@
   <a href="menu.html" class="order-now-btn" data-aos="fade-up">View Full Menu</a>
 </section>
 
+<!-- Floating Cart -->
+<div class="cart-wrapper">
+  <a href="checkout.html" class="view-cart-btn">🛒 View Cart <span class="cart-count">0</span></a>
+</div>
 
 <!-- Footer -->
 <footer>
@@ -267,6 +273,44 @@
   <p>&copy; 2025 Taste Liberia – All Rights Reserved</p>
 </footer>
 
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 1000, once: true });
+
+const orderButtons = document.querySelectorAll('.order-btn');
+const cartCount = document.querySelector('.cart-count');
+
+// Initialize cart from LocalStorage
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+// Function to update LocalStorage and cart count
+function updateCart() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+  cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+}
+
+// Add items to cart
+orderButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const name = btn.dataset.name;
+    const price = parseFloat(btn.dataset.price);
+
+    // Check if item already in cart
+    const existingItem = cart.find(item => item.name === name);
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push({ name, price, quantity: 1 });
+    }
+
+    updateCart();
+    cartCount.style.transform = 'scale(1.3)';
+    setTimeout(() => cartCount.style.transform = 'scale(1)', 200);
+  });
+});
+</script>
 
 </body>
 </html>
