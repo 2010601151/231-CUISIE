@@ -6,7 +6,7 @@ import bodyParser from "body-parser";
 const app = express();
 
 // ✅ Use your real secret key here (the one that starts with sk_live_...)
-const stripe = new Stripe("sk_live_YOUR_SECRET_KEY_HERE");
+const stripe = new Stripe("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");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -43,3 +43,4 @@ app.post("/create-checkout-session", async (req, res) => {
 // Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
+
