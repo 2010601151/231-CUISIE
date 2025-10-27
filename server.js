@@ -1,52 +1,40 @@
-import express from "express";
-import Stripe from "stripe";
-import cors from "cors";
-import bodyParser from "body-parser";
-import dotenv from "dotenv";
-
-dotenv.config(); // load .env variables
+// server.js
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const stripe = require("stripe")("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"); // replace this with SECRET KEY
 
 const app = express();
-
-// ✅ Stripe secret key from environment variable
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
-app.use(cors({
-  origin: "https://taste-liberia.vercel.app", // your Vercel frontend
-}));
 app.use(bodyParser.json());
+app.use(cors());
 
 app.post("/create-checkout-session", async (req, res) => {
+  const { itemName, itemPrice } = req.body;
+
   try {
-    const { cart } = req.body;
-
-    if (!cart || !cart.length) {
-      return res.status(400).json({ error: "Cart is empty" });
-    }
-
-    const line_items = cart.map(item => ({
-      price_data: {
-        currency: "usd",
-        product_data: { name: item.name },
-        unit_amount: Math.round(Number(item.price) * 100), // cents
-      },
-      quantity: Number(item.qty),
-    }));
-
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
-      line_items,
+      line_items: [
+        {
+          price_data: {
+            currency: "usd",
+            product_data: {
+              name: itemName,
+            },
+            unit_amount: parseInt(itemPrice),
+          },
+          quantity: 1,
+        },
+      ],
       mode: "payment",
-      success_url: "https://taste-liberia.vercel.app/success.html",
-      cancel_url: "https://taste-liberia.vercel.app/cancel.html",
+      success_url: "https://yourwebsite.com/success.html",
+      cancel_url: "https://yourwebsite.com/cancel.html",
     });
 
-    res.json({ url: session.url });
-  } catch (err) {
-    console.error("Stripe error:", err);
-    res.status(500).json({ error: "Payment creation failed" });
+    res.json({ id: session.id });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`✅ Backend running on port ${PORT}`));
+app.listen(3000, () => console.log("✅ Server running on http://localhost:3000"));
